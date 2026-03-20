@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScanJet Privacy Policy</title>
+  <meta name="description" content="ScanJet Privacy Policy" />
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --bg2:#11151c;
+      --panel:rgba(255,255,255,.06);
+      --panel-border:rgba(255,255,255,.10);
+      --text:#f5f7fb;
+      --muted:#a9b1c3;
+      --line:rgba(255,255,255,.08);
+      --accent:#6ec1ff;
+      --accent2:#8b5cf6;
+      --success:#7ee787;
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(110,193,255,.18), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(139,92,246,.18), transparent 28%),
+        linear-gradient(180deg, #090b10 0%, #0d1117 48%, #0b0d12 100%);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans TC","Noto Sans SC","Noto Sans JP","Noto Sans KR",sans-serif;
+      line-height:1.7;
+      scroll-behavior:smooth;
+    }
+
+    a{
+      color:#9fd7ff;
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(16px);
+      background:rgba(8,10,14,.68);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.3px;
+    }
+
+    .brand-mark{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, rgba(110,193,255,.95), rgba(139,92,246,.92));
+      box-shadow:0 8px 24px rgba(110,193,255,.28);
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+
+    .brand-mark:before,
+    .brand-mark:after{
+      content:"";
+      position:absolute;
+      background:rgba(255,255,255,.9);
+      border-radius:2px;
+    }
+
+    .brand-mark:before{
+      width:18px;
+      height:4px;
+      left:8px;
+      top:10px;
+      box-shadow:
+        0 8px 0 rgba(255,255,255,.9),
+        0 16px 0 rgba(255,255,255,.9);
+    }
+
+    .brand-mark:after{
+      width:4px;
+      height:18px;
+      left:10px;
+      top:8px;
+      box-shadow:
+        8px 0 0 rgba(255,255,255,.9),
+        16px 0 0 rgba(255,255,255,.9);
+      opacity:.15;
+    }
+
+    .lang-switch{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+    }
+
+    .lang-btn{
+      border:1px solid var(--panel-border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .lang-btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(135deg, rgba(110,193,255,.2), rgba(139,92,246,.2));
+      border-color:rgba(110,193,255,.45);
+      box-shadow:0 8px 22px rgba(110,193,255,.14);
+    }
+
+    .hero{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:72px 20px 30px;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid var(--panel-border);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:42px;
+    }
+
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 18%, transparent 36%);
+      transform:translateX(-100%);
+      animation:shine 7s linear infinite;
+      pointer-events:none;
+    }
+
+    @keyframes shine{
+      to{transform:translateX(100%)}
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--panel-border);
+      color:#d8e0f1;
+      font-size:13px;
+      margin-bottom:18px;
+    }
+
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--success),#34d399);
+      box-shadow:0 0 16px rgba(126,231,135,.55);
+      flex:0 0 auto;
+    }
+
+    h1{
+      font-size:clamp(34px, 7vw, 64px);
+      line-height:1.05;
+      margin:0 0 14px;
+      letter-spacing:-.03em;
+    }
+
+    .lead{
+      max-width:880px;
+      color:var(--muted);
+      font-size:18px;
+      margin:0;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .meta-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--panel-border);
+      background:rgba(255,255,255,.05);
+      color:#d7deef;
+      font-size:13px;
+    }
+
+    .content-wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:20px 20px 80px;
+      display:grid;
+      grid-template-columns:280px minmax(0,1fr);
+      gap:24px;
+    }
+
+    .toc{
+      position:sticky;
+      top:84px;
+      align-self:start;
+      background:var(--panel);
+      border:1px solid var(--panel-border);
+      border-radius:24px;
+      padding:18px;
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+    }
+
+    .toc-title{
+      margin:0 0 12px;
+      font-size:14px;
+      color:#dfe7f7;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .toc-link{
+      color:var(--muted);
+      padding:9px 10px;
+      border-radius:12px;
+      transition:.2s ease;
+      font-size:14px;
+      text-decoration:none;
+    }
+
+    .toc-link:hover{
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+    }
+
+    .sections{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .section{
+      background:var(--panel);
+      border:1px solid var(--panel-border);
+      border-radius:24px;
+      padding:28px;
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+
+    .section h2{
+      margin:0 0 12px;
+      font-size:26px;
+      letter-spacing:-.02em;
+    }
+
+    .section p{
+      margin:0 0 14px;
+      color:#d9e0ef;
+    }
+
+    .section ul{
+      margin:0 0 8px 22px;
+      padding:0;
+    }
+
+    .section li{
+      margin:8px 0;
+      color:#d9e0ef;
+    }
+
+    .section strong{
+      color:#fff;
+    }
+
+    .footer{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 20px 50px;
+      color:var(--muted);
+    }
+
+    .footer-card{
+      border:1px solid var(--panel-border);
+      background:var(--panel);
+      border-radius:24px;
+      padding:22px;
+      backdrop-filter:blur(10px);
+    }
+
+    [data-lang]{
+      display:none !important;
+    }
+
+    [data-lang].show{
+      display:block !important;
+    }
+
+    .eyebrow [data-lang].show,
+    .footer-card [data-lang].show,
+    .meta-pill[data-lang].show{
+      display:inline !important;
+    }
+
+    .toc .toc-title[data-lang].show{
+      display:block !important;
+    }
+
+    .toc a[data-lang].show{
+      display:block !important;
+    }
+
+    @media (max-width: 960px){
+      .content-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .toc{
+        position:relative;
+        top:0;
+      }
+
+      .hero-card{
+        padding:28px;
+        border-radius:26px;
+      }
+
+      .section{
+        padding:22px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .lang-switch{
+        width:100%;
+        justify-content:flex-start;
+      }
+
+      .hero{
+        padding-top:48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>ScanJet</div>
+      </div>
+
+      <div class="lang-switch">
+        <button class="lang-btn active" data-set-lang="en" type="button">English</button>
+        <button class="lang-btn" data-set-lang="zh-Hant" type="button">繁體中文</button>
+        <button class="lang-btn" data-set-lang="zh-Hans" type="button">简体中文</button>
+        <button class="lang-btn" data-set-lang="ja" type="button">日本語</button>
+        <button class="lang-btn" data-set-lang="ko" type="button">한국어</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span class="show" data-lang="en">Privacy & Data Transparency</span>
+        <span data-lang="zh-Hant">隱私與資料透明說明</span>
+        <span data-lang="zh-Hans">隐私与数据透明说明</span>
+        <span data-lang="ja">プライバシーとデータ透明性</span>
+        <span data-lang="ko">개인정보 및 데이터 투명성</span>
+      </div>
+
+      <h1 class="show" data-lang="en">Privacy Policy</h1>
+      <h1 data-lang="zh-Hant">隱私權政策</h1>
+      <h1 data-lang="zh-Hans">隐私权政策</h1>
+      <h1 data-lang="ja">プライバシーポリシー</h1>
+      <h1 data-lang="ko">개인정보처리방침</h1>
+
+      <p class="lead show" data-lang="en">
+        This Privacy Policy explains how ScanJet collects, uses, stores, and protects information when you use our barcode and QR code scanning application and related services.
+      </p>
+      <p class="lead" data-lang="zh-Hant">
+        本隱私權政策說明您在使用 ScanJet 條碼與 QR Code 掃描應用程式及相關服務時，我們如何蒐集、使用、儲存與保護您的資訊。
+      </p>
+      <p class="lead" data-lang="zh-Hans">
+        本隐私权政策说明您在使用 ScanJet 条码与 QR Code 扫描应用程序及相关服务时，我们如何收集、使用、存储与保护您的信息。
+      </p>
+      <p class="lead" data-lang="ja">
+        本プライバシーポリシーは、ScanJet のバーコードおよび QR コードスキャンアプリならびに関連サービスの利用時に、当社がどのように情報を収集、利用、保存、保護するかを説明するものです。
+      </p>
+      <p class="lead" data-lang="ko">
+        본 개인정보처리방침은 사용자가 ScanJet 바코드 및 QR 코드 스캔 앱과 관련 서비스를 이용할 때 당사가 어떤 정보를 수집, 이용, 저장 및 보호하는지 설명합니다.
+      </p>
+
+      <div class="meta">
+        <div class="meta-pill">
+          <span class="show" data-lang="en">Effective Date: March 20, 2026</span>
+          <span data-lang="zh-Hant">生效日期：2026 年 3 月 20 日</span>
+          <span data-lang="zh-Hans">生效日期：2026 年 3 月 20 日</span>
+          <span data-lang="ja">施行日：2026年3月20日</span>
+          <span data-lang="ko">시행일: 2026년 3월 20일</span>
+        </div>
+
+        <div class="meta-pill">
+          Contact:
+          <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-wrap">
+    <aside class="toc">
+      <h3 class="toc-title show" data-lang="en">Contents</h3>
+      <h3 class="toc-title" data-lang="zh-Hant">目錄</h3>
+      <h3 class="toc-title" data-lang="zh-Hans">目录</h3>
+      <h3 class="toc-title" data-lang="ja">目次</h3>
+      <h3 class="toc-title" data-lang="ko">목차</h3>
+
+      <a class="toc-link show" href="#s1" data-lang="en">1. Information We Collect</a>
+      <a class="toc-link" href="#s1" data-lang="zh-Hant">1. 我們蒐集的資訊</a>
+      <a class="toc-link" href="#s1" data-lang="zh-Hans">1. 我们收集的信息</a>
+      <a class="toc-link" href="#s1" data-lang="ja">1. 収集する情報</a>
+      <a class="toc-link" href="#s1" data-lang="ko">1. 수집하는 정보</a>
+
+      <a class="toc-link show" href="#s2" data-lang="en">2. How We Use Information</a>
+      <a class="toc-link" href="#s2" data-lang="zh-Hant">2. 資訊使用方式</a>
+      <a class="toc-link" href="#s2" data-lang="zh-Hans">2. 信息使用方式</a>
+      <a class="toc-link" href="#s2" data-lang="ja">2. 情報の利用方法</a>
+      <a class="toc-link" href="#s2" data-lang="ko">2. 정보 이용 방식</a>
+
+      <a class="toc-link show" href="#s3" data-lang="en">3. Camera & Scan Data</a>
+      <a class="toc-link" href="#s3" data-lang="zh-Hant">3. 相機與掃描資料</a>
+      <a class="toc-link" href="#s3" data-lang="zh-Hans">3. 相机与扫描数据</a>
+      <a class="toc-link" href="#s3" data-lang="ja">3. カメラとスキャンデータ</a>
+      <a class="toc-link" href="#s3" data-lang="ko">3. 카메라 및 스캔 데이터</a>
+
+      <a class="toc-link show" href="#s4" data-lang="en">4. Advertising & AdMob</a>
+      <a class="toc-link" href="#s4" data-lang="zh-Hant">4. 廣告與 AdMob</a>
+      <a class="toc-link" href="#s4" data-lang="zh-Hans">4. 广告与 AdMob</a>
+      <a class="toc-link" href="#s4" data-lang="ja">4. 広告および AdMob</a>
+      <a class="toc-link" href="#s4" data-lang="ko">4. 광고 및 AdMob</a>
+
+      <a class="toc-link show" href="#s5" data-lang="en">5. Data Sharing</a>
+      <a class="toc-link" href="#s5" data-lang="zh-Hant">5. 資料分享</a>
+      <a class="toc-link" href="#s5" data-lang="zh-Hans">5. 数据共享</a>
+      <a class="toc-link" href="#s5" data-lang="ja">5. データ共有</a>
+      <a class="toc-link" href="#s5" data-lang="ko">5. 데이터 공유</a>
+
+      <a class="toc-link show" href="#s6" data-lang="en">6. Data Retention & Security</a>
+      <a class="toc-link" href="#s6" data-lang="zh-Hant">6. 保存與安全</a>
+      <a class="toc-link" href="#s6" data-lang="zh-Hans">6. 保存与安全</a>
+      <a class="toc-link" href="#s6" data-lang="ja">6. 保存期間と安全管理</a>
+      <a class="toc-link" href="#s6" data-lang="ko">6. 보관 및 보안</a>
+
+      <a class="toc-link show" href="#s7" data-lang="en">7. Your Rights</a>
+      <a class="toc-link" href="#s7" data-lang="zh-Hant">7. 您的權利</a>
+      <a class="toc-link" href="#s7" data-lang="zh-Hans">7. 您的权利</a>
+      <a class="toc-link" href="#s7" data-lang="ja">7. お客様の権利</a>
+      <a class="toc-link" href="#s7" data-lang="ko">7. 귀하의 권리</a>
+
+      <a class="toc-link show" href="#s8" data-lang="en">8. Children’s Privacy</a>
+      <a class="toc-link" href="#s8" data-lang="zh-Hant">8. 兒童隱私</a>
+      <a class="toc-link" href="#s8" data-lang="zh-Hans">8. 儿童隐私</a>
+      <a class="toc-link" href="#s8" data-lang="ja">8. 子どものプライバシー</a>
+      <a class="toc-link" href="#s8" data-lang="ko">8. 아동 개인정보</a>
+
+      <a class="toc-link show" href="#s9" data-lang="en">9. Contact Us</a>
+      <a class="toc-link" href="#s9" data-lang="zh-Hant">9. 聯絡我們</a>
+      <a class="toc-link" href="#s9" data-lang="zh-Hans">9. 联系我们</a>
+      <a class="toc-link" href="#s9" data-lang="ja">9. お問い合わせ</a>
+      <a class="toc-link" href="#s9" data-lang="ko">9. 문의하기</a>
+    </aside>
+
+    <section class="sections">
+      <div class="section" id="s1">
+        <h2 class="show" data-lang="en">1. Information We Collect</h2>
+        <h2 data-lang="zh-Hant">1. 我們蒐集的資訊</h2>
+        <h2 data-lang="zh-Hans">1. 我们收集的信息</h2>
+        <h2 data-lang="ja">1. 収集する情報</h2>
+        <h2 data-lang="ko">1. 수집하는 정보</h2>
+
+        <div class="show" data-lang="en">
+          <p>Depending on how you use ScanJet, we may collect or process the following categories of information:</p>
+          <ul>
+            <li><strong>Scan content:</strong> barcode values, QR code content, or raw scan text processed by the app.</li>
+            <li><strong>Camera access data:</strong> the app uses your device camera to scan codes in real time.</li>
+            <li><strong>History records:</strong> scan history stored locally on your device if that feature is enabled.</li>
+            <li><strong>Device and diagnostic data:</strong> app version, device model, operating system version, crash diagnostics, and performance logs.</li>
+            <li><strong>Advertising-related data:</strong> data processed by Google AdMob or related advertising partners, which may include device identifiers, IP address, approximate location, and ad interaction data.</li>
+            <li><strong>Transmission data:</strong> if you choose to send scan results to a server, API, or connected endpoint, the transmitted scan content and related request metadata may be processed.</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>依您使用 ScanJet 的方式不同，我們可能蒐集或處理以下類型的資訊：</p>
+          <ul>
+            <li><strong>掃描內容：</strong>條碼值、QR Code 內容或應用程式處理的原始掃描文字。</li>
+            <li><strong>相機存取資料：</strong>本應用程式會使用您裝置的相機進行即時掃碼。</li>
+            <li><strong>歷史紀錄：</strong>若您啟用相關功能，掃描歷史可能儲存在您的裝置本地端。</li>
+            <li><strong>裝置與診斷資料：</strong>App 版本、裝置型號、作業系統版本、當機診斷與效能紀錄。</li>
+            <li><strong>廣告相關資料：</strong>Google AdMob 或其廣告合作夥伴可能處理裝置識別碼、IP 位址、粗略位置資訊與廣告互動資料。</li>
+            <li><strong>傳輸資料：</strong>若您選擇將掃描結果傳送至伺服器、API 或連接端點，傳輸內容與相關請求中繼資料可能會被處理。</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>根据您使用 ScanJet 的方式不同，我们可能收集或处理以下类型的信息：</p>
+          <ul>
+            <li><strong>扫描内容：</strong>条码值、QR Code 内容或应用程序处理的原始扫描文字。</li>
+            <li><strong>相机访问数据：</strong>本应用程序会使用您设备的相机进行实时扫码。</li>
+            <li><strong>历史记录：</strong>若您启用相关功能，扫描历史可能存储在您的设备本地。</li>
+            <li><strong>设备与诊断数据：</strong>App 版本、设备型号、操作系统版本、崩溃诊断与性能日志。</li>
+            <li><strong>广告相关数据：</strong>Google AdMob 或其广告合作伙伴可能处理设备标识符、IP 地址、粗略位置信息与广告互动数据。</li>
+            <li><strong>传输数据：</strong>若您选择将扫描结果发送至服务器、API 或连接端点，传输内容与相关请求元数据可能会被处理。</li>
+          </ul>
+        </div>
+
+        <div data-lang="ja">
+          <p>ScanJet の利用方法に応じて、当社は以下の種類の情報を収集または処理する場合があります。</p>
+          <ul>
+            <li><strong>スキャン内容：</strong>バーコード値、QR コード内容、またはアプリが処理する生のスキャンテキスト。</li>
+            <li><strong>カメラ利用データ：</strong>本アプリはリアルタイムスキャンのために端末のカメラを使用します。</li>
+            <li><strong>履歴記録：</strong>機能が有効な場合、スキャン履歴は端末内にローカル保存されることがあります。</li>
+            <li><strong>端末および診断データ：</strong>アプリのバージョン、端末モデル、OS バージョン、クラッシュ診断、パフォーマンスログ。</li>
+            <li><strong>広告関連データ：</strong>Google AdMob またはその広告パートナーが、端末識別子、IP アドレス、おおよその位置情報、広告インタラクションデータを処理する場合があります。</li>
+            <li><strong>送信データ：</strong>スキャン結果をサーバー、API、接続先へ送信する設定を利用する場合、送信内容および関連メタデータが処理されることがあります。</li>
+          </ul>
+        </div>
+
+        <div data-lang="ko">
+          <p>사용자가 ScanJet을 이용하는 방식에 따라 당사는 다음 범주의 정보를 수집하거나 처리할 수 있습니다.</p>
+          <ul>
+            <li><strong>스캔 내용:</strong> 바코드 값, QR 코드 내용 또는 앱이 처리한 원시 스캔 텍스트.</li>
+            <li><strong>카메라 접근 데이터:</strong> 본 앱은 실시간 코드 스캔을 위해 기기 카메라를 사용합니다.</li>
+            <li><strong>기록 데이터:</strong> 해당 기능이 활성화된 경우 스캔 기록이 기기에 로컬 저장될 수 있습니다.</li>
+            <li><strong>기기 및 진단 데이터:</strong> 앱 버전, 기기 모델, 운영체제 버전, 충돌 진단 및 성능 로그.</li>
+            <li><strong>광고 관련 데이터:</strong> Google AdMob 또는 관련 광고 파트너가 기기 식별자, IP 주소, 대략적인 위치 정보 및 광고 상호작용 데이터를 처리할 수 있습니다.</li>
+            <li><strong>전송 데이터:</strong> 사용자가 스캔 결과를 서버, API 또는 연결된 엔드포인트로 전송하는 경우 해당 내용 및 관련 요청 메타데이터가 처리될 수 있습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="s2">
+        <h2 class="show" data-lang="en">2. How We Use Information</h2>
+        <h2 data-lang="zh-Hant">2. 資訊使用方式</h2>
+        <h2 data-lang="zh-Hans">2. 信息使用方式</h2>
+        <h2 data-lang="ja">2. 情報の利用方法</h2>
+        <h2 data-lang="ko">2. 정보 이용 방식</h2>
+
+        <div class="show" data-lang="en">
+          <p>We use information to provide and improve ScanJet, including to:</p>
+          <ul>
+            <li>enable barcode and QR code scanning;</li>
+            <li>display and manage scan history;</li>
+            <li>send scan results to destinations you configure;</li>
+            <li>diagnose issues, fix bugs, and improve app performance;</li>
+            <li>serve ads through Google AdMob;</li>
+            <li>comply with legal obligations and enforce our terms.</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>我們使用資訊以提供與改善 ScanJet，包括：</p>
+          <ul>
+            <li>啟用條碼與 QR Code 掃描功能；</li>
+            <li>顯示與管理掃描歷史紀錄；</li>
+            <li>將掃描結果傳送至您設定的目標端；</li>
+            <li>診斷問題、修復錯誤並改善 App 效能；</li>
+            <li>透過 Google AdMob 顯示廣告；</li>
+            <li>遵循法律義務並執行服務條款。</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>我们使用信息以提供与改进 ScanJet，包括：</p>
+          <ul>
+            <li>启用条码与 QR Code 扫描功能；</li>
+            <li>显示与管理扫描历史记录；</li>
+            <li>将扫描结果发送至您配置的目标端；</li>
+            <li>诊断问题、修复错误并改善 App 性能；</li>
+            <li>通过 Google AdMob 展示广告；</li>
+            <li>遵守法律义务并执行服务条款。</li>
+          </ul>
+        </div>
+
+        <div data-lang="ja">
+          <p>当社は ScanJet の提供および改善のために情報を使用します。具体例は以下のとおりです。</p>
+          <ul>
+            <li>バーコードおよび QR コードのスキャン機能の提供</li>
+            <li>スキャン履歴の表示および管理</li>
+            <li>ユーザーが設定した送信先へのスキャン結果の送信</li>
+            <li>問題の診断、バグ修正、パフォーマンス改善</li>
+            <li>Google AdMob を通じた広告配信</li>
+            <li>法的義務の履行および利用規約の執行</li>
+          </ul>
+        </div>
+
+        <div data-lang="ko">
+          <p>당사는 ScanJet을 제공하고 개선하기 위해 정보를 다음과 같이 사용합니다.</p>
+          <ul>
+            <li>바코드 및 QR 코드 스캔 기능 제공</li>
+            <li>스캔 기록 표시 및 관리</li>
+            <li>사용자가 설정한 목적지로 스캔 결과 전송</li>
+            <li>문제 진단, 버그 수정 및 앱 성능 개선</li>
+            <li>Google AdMob을 통한 광고 제공</li>
+            <li>법적 의무 준수 및 약관 집행</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="s3">
+        <h2 class="show" data-lang="en">3. Camera & Scan Data</h2>
+        <h2 data-lang="zh-Hant">3. 相機與掃描資料</h2>
+        <h2 data-lang="zh-Hans">3. 相机与扫描数据</h2>
+        <h2 data-lang="ja">3. カメラとスキャンデータ</h2>
+        <h2 data-lang="ko">3. 카메라 및 스캔 데이터</h2>
+
+        <div class="show" data-lang="en">
+          <p>ScanJet requires camera permission to detect and read barcodes and QR codes. Camera images are used for scanning functionality. Unless you explicitly choose to save, share, or transmit results, scan data is primarily processed for app functionality on the device.</p>
+          <p>If you enable history, scan results may be stored locally on your device. If you enable automatic sending or manual sending, the scanned data may be transmitted to the configured destination selected by you.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>ScanJet 需要相機權限以偵測並讀取條碼與 QR Code。相機影像用於掃描功能。除非您明確選擇儲存、分享或傳送結果，否則掃描資料主要是為了裝置上的 App 功能而處理。</p>
+          <p>若您啟用歷史紀錄，掃描結果可能儲存在您的裝置本地端。若您啟用自動傳送或手動傳送，掃描資料可能會被傳送至您自行設定的目的端。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>ScanJet 需要相机权限以检测并读取条码与 QR Code。相机图像用于扫描功能。除非您明确选择保存、分享或发送结果，否则扫描数据主要是为了设备上的 App 功能而处理。</p>
+          <p>若您启用历史记录，扫描结果可能存储在您的设备本地。若您启用自动发送或手动发送，扫描数据可能会被发送至您自行设置的目标端。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>ScanJet はバーコードおよび QR コードを検出・読み取るためにカメラ権限を必要とします。カメラ映像はスキャン機能のために使用されます。ユーザーが明示的に保存、共有、送信を選択しない限り、スキャンデータは主に端末上の機能のために処理されます。</p>
+          <p>履歴機能を有効にした場合、スキャン結果は端末内に保存されることがあります。自動送信または手動送信を有効にした場合、スキャンデータはユーザーが設定した送信先へ送られることがあります。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>ScanJet은 바코드 및 QR 코드 감지와 판독을 위해 카메라 권한이 필요합니다. 카메라 이미지는 스캔 기능 제공을 위해 사용됩니다. 사용자가 명시적으로 저장, 공유 또는 전송을 선택하지 않는 한 스캔 데이터는 주로 기기 내 앱 기능을 위해 처리됩니다.</p>
+          <p>기록 기능을 활성화하면 스캔 결과가 기기에 로컬 저장될 수 있습니다. 자동 전송 또는 수동 전송을 활성화하면 스캔 데이터가 사용자가 설정한 목적지로 전송될 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s4">
+        <h2 class="show" data-lang="en">4. Advertising & AdMob</h2>
+        <h2 data-lang="zh-Hant">4. 廣告與 AdMob</h2>
+        <h2 data-lang="zh-Hans">4. 广告与 AdMob</h2>
+        <h2 data-lang="ja">4. 広告および AdMob</h2>
+        <h2 data-lang="ko">4. 광고 및 AdMob</h2>
+
+        <div class="show" data-lang="en">
+          <p>ScanJet may display advertisements using <strong>Google AdMob</strong>. AdMob may collect and process certain information in accordance with Google’s own privacy practices. This may include advertising identifiers, device information, IP address, approximate location, and ad engagement data.</p>
+          <p>If required by law or platform rules, consent dialogs or tracking permission prompts may be shown to you. You can also review Google’s privacy information from Google’s official services and policies.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>ScanJet 可能透過 <strong>Google AdMob</strong> 顯示廣告。AdMob 可能依據 Google 自身的隱私實務蒐集與處理特定資訊，可能包括廣告識別碼、裝置資訊、IP 位址、粗略位置資訊與廣告互動資料。</p>
+          <p>若法律或平台規則要求，您可能會看到同意視窗或追蹤權限提示。您也可以參考 Google 官方服務與政策中的隱私資訊。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>ScanJet 可能通过 <strong>Google AdMob</strong> 展示广告。AdMob 可能依据 Google 自身的隐私实践收集与处理特定信息，可能包括广告标识符、设备信息、IP 地址、粗略位置信息与广告互动数据。</p>
+          <p>若法律或平台规则要求，您可能会看到同意窗口或追踪权限提示。您也可以参考 Google 官方服务与政策中的隐私信息。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>ScanJet は <strong>Google AdMob</strong> を使用して広告を表示する場合があります。AdMob は Google 独自のプライバシー慣行に従って、広告識別子、端末情報、IP アドレス、おおよその位置情報、広告への反応データなどを収集・処理することがあります。</p>
+          <p>法令またはプラットフォームルールにより必要な場合、同意ダイアログやトラッキング許可画面が表示されることがあります。詳細は Google の公式プライバシー情報もご確認ください。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>ScanJet은 <strong>Google AdMob</strong>을 사용하여 광고를 표시할 수 있습니다. AdMob은 Google 자체 개인정보 처리방침에 따라 광고 식별자, 기기 정보, IP 주소, 대략적인 위치 정보 및 광고 상호작용 데이터를 수집·처리할 수 있습니다.</p>
+          <p>법률 또는 플랫폼 정책에 따라 필요한 경우 동의 팝업 또는 추적 권한 요청이 표시될 수 있습니다. 자세한 내용은 Google의 공식 개인정보 관련 안내를 확인하시기 바랍니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s5">
+        <h2 class="show" data-lang="en">5. Data Sharing</h2>
+        <h2 data-lang="zh-Hant">5. 資料分享</h2>
+        <h2 data-lang="zh-Hans">5. 数据共享</h2>
+        <h2 data-lang="ja">5. データ共有</h2>
+        <h2 data-lang="ko">5. 데이터 공유</h2>
+
+        <div class="show" data-lang="en">
+          <p>We do not sell your personal information. We may share data only in limited circumstances, such as:</p>
+          <ul>
+            <li>with service providers that support app functionality, analytics, hosting, advertising, or technical operations;</li>
+            <li>with destinations, servers, or APIs you configure through the app;</li>
+            <li>when required by law, regulation, legal process, or government request;</li>
+            <li>to protect rights, safety, security, or prevent fraud or abuse.</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>我們不出售您的個人資訊。我們僅在有限情況下分享資料，例如：</p>
+          <ul>
+            <li>與支援 App 功能、分析、託管、廣告或技術營運的服務供應商；</li>
+            <li>與您透過 App 自行設定的目的端、伺服器或 API；</li>
+            <li>依法令、法規、法律程序或政府要求時；</li>
+            <li>為保護權利、安全、資安，或防止詐欺與濫用時。</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>我们不会出售您的个人信息。我们仅在有限情况下共享数据，例如：</p>
+          <ul>
+            <li>与支持 App 功能、分析、托管、广告或技术运营的服务提供商；</li>
+            <li>与您通过 App 自行设置的目标端、服务器或 API；</li>
+            <li>在法律、法规、法律程序或政府要求下；</li>
+            <li>为保护权利、安全、信息安全，或防止欺诈与滥用时。</li>
+          </ul>
+        </div>
+
+        <div data-lang="ja">
+          <p>当社はお客様の個人情報を販売しません。データ共有は、以下のような限定的な場合にのみ行われます。</p>
+          <ul>
+            <li>アプリ機能、分析、ホスティング、広告、技術運用を支援するサービス提供者との共有</li>
+            <li>ユーザーがアプリ内で設定した送信先、サーバー、または API との共有</li>
+            <li>法令、法的手続き、または政府機関の要請に基づく場合</li>
+            <li>権利・安全・セキュリティ保護、不正防止のために必要な場合</li>
+          </ul>
+        </div>
+
+        <div data-lang="ko">
+          <p>당사는 귀하의 개인정보를 판매하지 않습니다. 다만 다음과 같은 제한된 경우에 한해 데이터를 공유할 수 있습니다.</p>
+          <ul>
+            <li>앱 기능, 분석, 호스팅, 광고 또는 기술 운영을 지원하는 서비스 제공업체와의 공유</li>
+            <li>사용자가 앱을 통해 설정한 서버, API 또는 목적지와의 공유</li>
+            <li>법률, 규정, 법적 절차 또는 정부 요청에 따른 경우</li>
+            <li>권리, 안전, 보안 보호 및 사기·남용 방지를 위해 필요한 경우</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="s6">
+        <h2 class="show" data-lang="en">6. Data Retention & Security</h2>
+        <h2 data-lang="zh-Hant">6. 保存與安全</h2>
+        <h2 data-lang="zh-Hans">6. 保存与安全</h2>
+        <h2 data-lang="ja">6. 保存期間と安全管理</h2>
+        <h2 data-lang="ko">6. 보관 및 보안</h2>
+
+        <div class="show" data-lang="en">
+          <p>We retain data only as long as necessary for the purposes described in this policy, unless a longer retention period is required by law. Local scan history may remain on your device until you delete it or uninstall the app.</p>
+          <p>We take reasonable technical and organizational measures to protect information, but no method of transmission or storage is completely secure.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>除非法律要求更長保存期間，否則我們僅在達成本政策所述目的所需期間內保留資料。裝置本地的掃描歷史可能會持續保留，直到您刪除它或解除安裝 App 為止。</p>
+          <p>我們採取合理的技術與組織措施保護資訊，但任何傳輸或儲存方式都無法保證絕對安全。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>除非法律要求更长保存期限，否则我们仅在实现本政策所述目的所需期间内保留数据。设备本地的扫描历史可能会持续保留，直到您删除它或卸载 App 为止。</p>
+          <p>我们采取合理的技术与组织措施保护信息，但任何传输或存储方式都无法保证绝对安全。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>当社は、本ポリシーに記載された目的の達成に必要な期間に限ってデータを保持します。ただし、法令によりより長い保持が求められる場合を除きます。ローカルに保存されたスキャン履歴は、ユーザーが削除するかアプリをアンインストールするまで端末内に残る場合があります。</p>
+          <p>当社は合理的な技術的・組織的保護措置を講じますが、送信または保存のいかなる方法も完全に安全であるとは保証できません。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>당사는 본 방침에 기재된 목적 달성에 필요한 기간 동안만 데이터를 보관합니다. 단, 법률상 더 긴 보관 기간이 요구되는 경우는 예외입니다. 로컬 스캔 기록은 사용자가 직접 삭제하거나 앱을 삭제할 때까지 기기에 남아 있을 수 있습니다.</p>
+          <p>당사는 정보를 보호하기 위해 합리적인 기술적·관리적 조치를 취하지만, 어떠한 전송 또는 저장 방식도 완전한 보안을 보장할 수는 없습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s7">
+        <h2 class="show" data-lang="en">7. Your Rights</h2>
+        <h2 data-lang="zh-Hant">7. 您的權利</h2>
+        <h2 data-lang="zh-Hans">7. 您的权利</h2>
+        <h2 data-lang="ja">7. お客様の権利</h2>
+        <h2 data-lang="ko">7. 귀하의 권리</h2>
+
+        <div class="show" data-lang="en">
+          <p>Depending on your location and applicable law, you may have rights to access, correct, delete, restrict, or object to certain processing of your data. You may also be able to control permissions through your device settings, including camera access and ad tracking preferences.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>依您所在地區及適用法律，您可能享有存取、更正、刪除、限制或反對特定資料處理的權利。您也可以透過裝置設定管理權限，例如相機存取與廣告追蹤偏好。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>根据您所在地区及适用法律，您可能享有访问、更正、删除、限制或反对特定数据处理的权利。您也可以通过设备设置管理权限，例如相机访问与广告追踪偏好。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>お住まいの地域および適用法令に応じて、お客様はデータへのアクセス、訂正、削除、処理制限、異議申立てなどの権利を有する場合があります。また、カメラ権限や広告トラッキング設定など、端末設定から各種権限を管理できます。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>귀하의 지역 및 적용 법률에 따라 귀하는 데이터 접근, 정정, 삭제, 처리 제한 또는 특정 처리에 대한 이의 제기 권리를 가질 수 있습니다. 또한 카메라 권한 및 광고 추적 설정 등은 기기 설정에서 직접 관리할 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s8">
+        <h2 class="show" data-lang="en">8. Children’s Privacy</h2>
+        <h2 data-lang="zh-Hant">8. 兒童隱私</h2>
+        <h2 data-lang="zh-Hans">8. 儿童隐私</h2>
+        <h2 data-lang="ja">8. 子どものプライバシー</h2>
+        <h2 data-lang="ko">8. 아동 개인정보</h2>
+
+        <div class="show" data-lang="en">
+          <p>ScanJet is not intended for children under the age required by applicable law to provide valid consent. If you believe a child has provided data inappropriately, please contact us so we can review and take appropriate action.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>ScanJet 並非設計供未達適用法律可有效同意年齡之兒童使用。若您認為兒童不當提供了資料，請聯絡我們，我們將審查並採取適當措施。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>ScanJet 并非设计供未达到适用法律有效同意年龄的儿童使用。若您认为儿童不当提供了数据，请联系我们，我们将审查并采取适当措施。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>ScanJet は、適用法令上有効な同意を行う年齢に満たない子どもを対象としていません。子どもが不適切にデータを提供した可能性がある場合は、当社までご連絡ください。確認の上、適切に対応します。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>ScanJet은 관련 법률상 유효한 동의를 할 수 있는 연령 미만의 아동을 대상으로 하지 않습니다. 아동이 부적절하게 데이터를 제공했다고 판단되는 경우 당사에 연락해 주시면 검토 후 적절한 조치를 취하겠습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s9">
+        <h2 class="show" data-lang="en">9. Contact Us</h2>
+        <h2 data-lang="zh-Hant">9. 聯絡我們</h2>
+        <h2 data-lang="zh-Hans">9. 联系我们</h2>
+        <h2 data-lang="ja">9. お問い合わせ</h2>
+        <h2 data-lang="ko">9. 문의하기</h2>
+
+        <div class="show" data-lang="en">
+          <p>If you have questions about this Privacy Policy or your data, please contact:</p>
+          <p><strong>Email:</strong> <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>若您對本隱私權政策或您的資料有任何疑問，請聯絡：</p>
+          <p><strong>電子郵件：</strong><a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>若您对本隐私权政策或您的数据有任何疑问，请联系：</p>
+          <p><strong>电子邮件：</strong><a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="ja">
+          <p>本プライバシーポリシーまたはお客様のデータについてご質問がある場合は、以下までご連絡ください。</p>
+          <p><strong>メール：</strong><a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="ko">
+          <p>본 개인정보처리방침 또는 귀하의 데이터에 관한 문의는 아래 이메일로 연락해 주시기 바랍니다.</p>
+          <p><strong>이메일:</strong> <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-card">
+      <div class="show" data-lang="en">© 2026 ScanJet. All rights reserved.</div>
+      <div data-lang="zh-Hant">© 2026 ScanJet。保留所有權利。</div>
+      <div data-lang="zh-Hans">© 2026 ScanJet。保留所有权利。</div>
+      <div data-lang="ja">© 2026 ScanJet. All rights reserved.</div>
+      <div data-lang="ko">© 2026 ScanJet. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const buttons = document.querySelectorAll('[data-set-lang]');
+      const blocks = document.querySelectorAll('[data-lang]');
+      const defaultLang = localStorage.getItem('scanjet_lang') || 'en';
+
+      function setLang(lang){
+        blocks.forEach(el => {
+          el.classList.toggle('show', el.getAttribute('data-lang') === lang);
+        });
+
+        buttons.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-set-lang') === lang);
+        });
+
+        document.documentElement.lang = lang;
+        localStorage.setItem('scanjet_lang', lang);
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLang(btn.getAttribute('data-set-lang'));
+        });
+      });
+
+      setLang(defaultLang);
+    })();
+  </script>
+</body>
+</html>
