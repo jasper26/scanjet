@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScanJet Terms of Service</title>
+  <meta name="description" content="ScanJet Terms of Service" />
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --panel:rgba(255,255,255,.06);
+      --panel-border:rgba(255,255,255,.10);
+      --text:#f5f7fb;
+      --muted:#a9b1c3;
+      --line:rgba(255,255,255,.08);
+      --accent:#6ec1ff;
+      --accent2:#8b5cf6;
+      --warning:#f59e0b;
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(110,193,255,.18), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(139,92,246,.18), transparent 28%),
+        linear-gradient(180deg, #090b10 0%, #0d1117 48%, #0b0d12 100%);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans TC","Noto Sans SC","Noto Sans JP","Noto Sans KR",sans-serif;
+      line-height:1.7;
+      scroll-behavior:smooth;
+    }
+
+    a{
+      color:#9fd7ff;
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(16px);
+      background:rgba(8,10,14,.68);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:.3px;
+    }
+
+    .brand-mark{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:linear-gradient(135deg, rgba(110,193,255,.95), rgba(139,92,246,.92));
+      box-shadow:0 8px 24px rgba(110,193,255,.28);
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+
+    .brand-mark:before,
+    .brand-mark:after{
+      content:"";
+      position:absolute;
+      background:rgba(255,255,255,.9);
+      border-radius:2px;
+    }
+
+    .brand-mark:before{
+      width:18px;
+      height:4px;
+      left:8px;
+      top:10px;
+      box-shadow:
+        0 8px 0 rgba(255,255,255,.9),
+        0 16px 0 rgba(255,255,255,.9);
+    }
+
+    .brand-mark:after{
+      width:4px;
+      height:18px;
+      left:10px;
+      top:8px;
+      box-shadow:
+        8px 0 0 rgba(255,255,255,.9),
+        16px 0 0 rgba(255,255,255,.9);
+      opacity:.15;
+    }
+
+    .lang-switch{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+    }
+
+    .lang-btn{
+      border:1px solid var(--panel-border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .lang-btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .lang-btn.active{
+      background:linear-gradient(135deg, rgba(110,193,255,.2), rgba(139,92,246,.2));
+      border-color:rgba(110,193,255,.45);
+      box-shadow:0 8px 22px rgba(110,193,255,.14);
+    }
+
+    .hero{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:72px 20px 30px;
+    }
+
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid var(--panel-border);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding:42px;
+    }
+
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 18%, transparent 36%);
+      transform:translateX(-100%);
+      animation:shine 7s linear infinite;
+      pointer-events:none;
+    }
+
+    @keyframes shine{
+      to{transform:translateX(100%)}
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--panel-border);
+      color:#d8e0f1;
+      font-size:13px;
+      margin-bottom:18px;
+    }
+
+    .dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--warning),#f97316);
+      box-shadow:0 0 16px rgba(245,158,11,.45);
+      flex:0 0 auto;
+    }
+
+    h1{
+      font-size:clamp(34px, 7vw, 64px);
+      line-height:1.05;
+      margin:0 0 14px;
+      letter-spacing:-.03em;
+    }
+
+    .lead{
+      max-width:880px;
+      color:var(--muted);
+      font-size:18px;
+      margin:0;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .meta-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--panel-border);
+      background:rgba(255,255,255,.05);
+      color:#d7deef;
+      font-size:13px;
+    }
+
+    .content-wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:20px 20px 80px;
+      display:grid;
+      grid-template-columns:280px minmax(0,1fr);
+      gap:24px;
+    }
+
+    .toc{
+      position:sticky;
+      top:84px;
+      align-self:start;
+      background:var(--panel);
+      border:1px solid var(--panel-border);
+      border-radius:24px;
+      padding:18px;
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+    }
+
+    .toc-title{
+      margin:0 0 12px;
+      font-size:14px;
+      color:#dfe7f7;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .toc-link{
+      color:var(--muted);
+      padding:9px 10px;
+      border-radius:12px;
+      transition:.2s ease;
+      font-size:14px;
+      text-decoration:none;
+    }
+
+    .toc-link:hover{
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      text-decoration:none;
+    }
+
+    .sections{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .section{
+      background:var(--panel);
+      border:1px solid var(--panel-border);
+      border-radius:24px;
+      padding:28px;
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+
+    .section h2{
+      margin:0 0 12px;
+      font-size:26px;
+      letter-spacing:-.02em;
+    }
+
+    .section p{
+      margin:0 0 14px;
+      color:#d9e0ef;
+    }
+
+    .section ul{
+      margin:0 0 8px 22px;
+      padding:0;
+    }
+
+    .section li{
+      margin:8px 0;
+      color:#d9e0ef;
+    }
+
+    .section strong{
+      color:#fff;
+    }
+
+    .footer{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 20px 50px;
+      color:var(--muted);
+    }
+
+    .footer-card{
+      border:1px solid var(--panel-border);
+      background:var(--panel);
+      border-radius:24px;
+      padding:22px;
+      backdrop-filter:blur(10px);
+    }
+
+    [data-lang]{
+      display:none !important;
+    }
+
+    [data-lang].show{
+      display:block !important;
+    }
+
+    .eyebrow [data-lang].show,
+    .footer-card [data-lang].show,
+    .meta-pill[data-lang].show{
+      display:inline !important;
+    }
+
+    .toc .toc-title[data-lang].show{
+      display:block !important;
+    }
+
+    .toc a[data-lang].show{
+      display:block !important;
+    }
+
+    @media (max-width: 960px){
+      .content-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .toc{
+        position:relative;
+        top:0;
+      }
+
+      .hero-card{
+        padding:28px;
+      }
+
+      .section{
+        padding:22px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .nav-inner{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .lang-switch{
+        width:100%;
+        justify-content:flex-start;
+      }
+
+      .hero{
+        padding-top:48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div>ScanJet</div>
+      </div>
+
+      <div class="lang-switch">
+        <button class="lang-btn active" data-set-lang="en" type="button">English</button>
+        <button class="lang-btn" data-set-lang="zh-Hant" type="button">繁體中文</button>
+        <button class="lang-btn" data-set-lang="zh-Hans" type="button">简体中文</button>
+        <button class="lang-btn" data-set-lang="ja" type="button">日本語</button>
+        <button class="lang-btn" data-set-lang="ko" type="button">한국어</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-card">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span class="show" data-lang="en">Use of Service & Legal Terms</span>
+        <span data-lang="zh-Hant">服務使用與法律條款</span>
+        <span data-lang="zh-Hans">服务使用与法律条款</span>
+        <span data-lang="ja">サービス利用および法的条件</span>
+        <span data-lang="ko">서비스 이용 및 법적 조건</span>
+      </div>
+
+      <h1 class="show" data-lang="en">Terms of Service</h1>
+      <h1 data-lang="zh-Hant">服務條款</h1>
+      <h1 data-lang="zh-Hans">服务条款</h1>
+      <h1 data-lang="ja">利用規約</h1>
+      <h1 data-lang="ko">서비스 약관</h1>
+
+      <p class="lead show" data-lang="en">
+        These Terms of Service govern your use of ScanJet and related features, including barcode scanning, QR code scanning, history, and optional data transmission functions.
+      </p>
+      <p class="lead" data-lang="zh-Hant">
+        本服務條款規範您對 ScanJet 及其相關功能的使用，包括條碼掃描、QR Code 掃描、歷史紀錄與可選的資料傳送功能。
+      </p>
+      <p class="lead" data-lang="zh-Hans">
+        本服务条款规范您对 ScanJet 及其相关功能的使用，包括条码扫描、QR Code 扫描、历史记录与可选的数据传送功能。
+      </p>
+      <p class="lead" data-lang="ja">
+        本利用規約は、バーコードスキャン、QR コードスキャン、履歴、任意のデータ送信機能を含む ScanJet および関連機能の利用に適用されます。
+      </p>
+      <p class="lead" data-lang="ko">
+        본 서비스 약관은 바코드 스캔, QR 코드 스캔, 기록 및 선택적 데이터 전송 기능을 포함한 ScanJet 및 관련 기능의 이용에 적용됩니다.
+      </p>
+
+      <div class="meta">
+        <div class="meta-pill">
+          <span class="show" data-lang="en">Effective Date: March 20, 2026</span>
+          <span data-lang="zh-Hant">生效日期：2026 年 3 月 20 日</span>
+          <span data-lang="zh-Hans">生效日期：2026 年 3 月 20 日</span>
+          <span data-lang="ja">施行日：2026年3月20日</span>
+          <span data-lang="ko">시행일: 2026년 3월 20일</span>
+        </div>
+
+        <div class="meta-pill">
+          Contact:
+          <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-wrap">
+    <aside class="toc">
+      <h3 class="toc-title show" data-lang="en">Contents</h3>
+      <h3 class="toc-title" data-lang="zh-Hant">目錄</h3>
+      <h3 class="toc-title" data-lang="zh-Hans">目录</h3>
+      <h3 class="toc-title" data-lang="ja">目次</h3>
+      <h3 class="toc-title" data-lang="ko">목차</h3>
+
+      <a class="toc-link show" href="#s1" data-lang="en">1. Acceptance of Terms</a>
+      <a class="toc-link" href="#s1" data-lang="zh-Hant">1. 條款接受</a>
+      <a class="toc-link" href="#s1" data-lang="zh-Hans">1. 条款接受</a>
+      <a class="toc-link" href="#s1" data-lang="ja">1. 規約への同意</a>
+      <a class="toc-link" href="#s1" data-lang="ko">1. 약관 동의</a>
+
+      <a class="toc-link show" href="#s2" data-lang="en">2. License & Permitted Use</a>
+      <a class="toc-link" href="#s2" data-lang="zh-Hant">2. 授權與允許使用</a>
+      <a class="toc-link" href="#s2" data-lang="zh-Hans">2. 授权与允许使用</a>
+      <a class="toc-link" href="#s2" data-lang="ja">2. ライセンスと許可された利用</a>
+      <a class="toc-link" href="#s2" data-lang="ko">2. 라이선스 및 허용된 사용</a>
+
+      <a class="toc-link show" href="#s3" data-lang="en">3. User Responsibilities</a>
+      <a class="toc-link" href="#s3" data-lang="zh-Hant">3. 使用者責任</a>
+      <a class="toc-link" href="#s3" data-lang="zh-Hans">3. 用户责任</a>
+      <a class="toc-link" href="#s3" data-lang="ja">3. ユーザーの責任</a>
+      <a class="toc-link" href="#s3" data-lang="ko">3. 사용자 책임</a>
+
+      <a class="toc-link show" href="#s4" data-lang="en">4. Scan Accuracy Disclaimer</a>
+      <a class="toc-link" href="#s4" data-lang="zh-Hant">4. 掃描準確性聲明</a>
+      <a class="toc-link" href="#s4" data-lang="zh-Hans">4. 扫描准确性声明</a>
+      <a class="toc-link" href="#s4" data-lang="ja">4. スキャン精度に関する免責</a>
+      <a class="toc-link" href="#s4" data-lang="ko">4. 스캔 정확성 면책</a>
+
+      <a class="toc-link show" href="#s5" data-lang="en">5. Ads & Third-Party Services</a>
+      <a class="toc-link" href="#s5" data-lang="zh-Hant">5. 廣告與第三方服務</a>
+      <a class="toc-link" href="#s5" data-lang="zh-Hans">5. 广告与第三方服务</a>
+      <a class="toc-link" href="#s5" data-lang="ja">5. 広告および第三者サービス</a>
+      <a class="toc-link" href="#s5" data-lang="ko">5. 광고 및 제3자 서비스</a>
+
+      <a class="toc-link show" href="#s6" data-lang="en">6. Intellectual Property</a>
+      <a class="toc-link" href="#s6" data-lang="zh-Hant">6. 智慧財產權</a>
+      <a class="toc-link" href="#s6" data-lang="zh-Hans">6. 知识产权</a>
+      <a class="toc-link" href="#s6" data-lang="ja">6. 知的財産権</a>
+      <a class="toc-link" href="#s6" data-lang="ko">6. 지식재산권</a>
+
+      <a class="toc-link show" href="#s7" data-lang="en">7. Limitation of Liability</a>
+      <a class="toc-link" href="#s7" data-lang="zh-Hant">7. 責任限制</a>
+      <a class="toc-link" href="#s7" data-lang="zh-Hans">7. 责任限制</a>
+      <a class="toc-link" href="#s7" data-lang="ja">7. 責任の制限</a>
+      <a class="toc-link" href="#s7" data-lang="ko">7. 책임 제한</a>
+
+      <a class="toc-link show" href="#s8" data-lang="en">8. Termination</a>
+      <a class="toc-link" href="#s8" data-lang="zh-Hant">8. 終止</a>
+      <a class="toc-link" href="#s8" data-lang="zh-Hans">8. 终止</a>
+      <a class="toc-link" href="#s8" data-lang="ja">8. 終了</a>
+      <a class="toc-link" href="#s8" data-lang="ko">8. 종료</a>
+
+      <a class="toc-link show" href="#s9" data-lang="en">9. Contact</a>
+      <a class="toc-link" href="#s9" data-lang="zh-Hant">9. 聯絡方式</a>
+      <a class="toc-link" href="#s9" data-lang="zh-Hans">9. 联系方式</a>
+      <a class="toc-link" href="#s9" data-lang="ja">9. 連絡先</a>
+      <a class="toc-link" href="#s9" data-lang="ko">9. 연락처</a>
+    </aside>
+
+    <section class="sections">
+      <div class="section" id="s1">
+        <h2 class="show" data-lang="en">1. Acceptance of Terms</h2>
+        <h2 data-lang="zh-Hant">1. 條款接受</h2>
+        <h2 data-lang="zh-Hans">1. 条款接受</h2>
+        <h2 data-lang="ja">1. 規約への同意</h2>
+        <h2 data-lang="ko">1. 약관 동의</h2>
+
+        <div class="show" data-lang="en">
+          <p>By downloading, accessing, or using ScanJet, you agree to be bound by these Terms of Service. If you do not agree, you must stop using the app.</p>
+        </div>
+        <div data-lang="zh-Hant">
+          <p>當您下載、存取或使用 ScanJet，即表示您同意受本服務條款拘束。若您不同意，請停止使用本 App。</p>
+        </div>
+        <div data-lang="zh-Hans">
+          <p>当您下载、访问或使用 ScanJet，即表示您同意受本服务条款约束。若您不同意，请停止使用本 App。</p>
+        </div>
+        <div data-lang="ja">
+          <p>ScanJet をダウンロード、アクセス、または利用することにより、お客様は本利用規約に拘束されることに同意したものとみなされます。同意されない場合は、本アプリの利用を中止してください。</p>
+        </div>
+        <div data-lang="ko">
+          <p>ScanJet을 다운로드, 접속 또는 이용함으로써 귀하는 본 서비스 약관에 동의한 것으로 간주됩니다. 동의하지 않는 경우 앱 사용을 중단해야 합니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s2">
+        <h2 class="show" data-lang="en">2. License & Permitted Use</h2>
+        <h2 data-lang="zh-Hant">2. 授權與允許使用</h2>
+        <h2 data-lang="zh-Hans">2. 授权与允许使用</h2>
+        <h2 data-lang="ja">2. ライセンスと許可された利用</h2>
+        <h2 data-lang="ko">2. 라이선스 및 허용된 사용</h2>
+
+        <div class="show" data-lang="en">
+          <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use ScanJet for lawful purposes in accordance with these terms.</p>
+          <ul>
+            <li>You may use the app to scan supported codes and manage your results.</li>
+            <li>You may not copy, resell, sublicense, reverse engineer, or misuse the app except as allowed by law.</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>我們授予您有限、非專屬、不可轉讓、可撤銷的授權，以依照本條款將 ScanJet 用於合法目的。</p>
+          <ul>
+            <li>您可以使用本 App 掃描支援的代碼並管理結果。</li>
+            <li>除非法律允許，您不得複製、轉售、再授權、逆向工程或濫用本 App。</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>我们授予您有限、非独占、不可转让、可撤销的授权，以依照本条款将 ScanJet 用于合法目的。</p>
+          <ul>
+            <li>您可以使用本 App 扫描支持的代码并管理结果。</li>
+            <li>除非法律允许，您不得复制、转售、再授权、逆向工程或滥用本 App。</li>
+          </ul>
+        </div>
+
+        <div data-lang="ja">
+          <p>当社は、本規約に従い、適法な目的のために ScanJet を利用するための、限定的、非独占的、譲渡不能、撤回可能なライセンスをお客様に付与します。</p>
+          <ul>
+            <li>本アプリを利用して対応コードをスキャンし、結果を管理できます。</li>
+            <li>法令で認められる場合を除き、複製、再販売、再許諾、リバースエンジニアリング、または不正利用はできません。</li>
+          </ul>
+        </div>
+
+        <div data-lang="ko">
+          <p>당사는 귀하에게 본 약관에 따라 적법한 목적을 위해 ScanJet을 사용할 수 있는 제한적, 비독점적, 양도 불가, 취소 가능한 라이선스를 부여합니다.</p>
+          <ul>
+            <li>귀하는 앱을 사용하여 지원되는 코드를 스캔하고 결과를 관리할 수 있습니다.</li>
+            <li>법률이 허용하는 경우를 제외하고 앱을 복제, 재판매, 재라이선스, 역설계 또는 오용할 수 없습니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="s3">
+        <h2 class="show" data-lang="en">3. User Responsibilities</h2>
+        <h2 data-lang="zh-Hant">3. 使用者責任</h2>
+        <h2 data-lang="zh-Hans">3. 用户责任</h2>
+        <h2 data-lang="ja">3. ユーザーの責任</h2>
+        <h2 data-lang="ko">3. 사용자 책임</h2>
+
+        <div class="show" data-lang="en">
+          <p>You are responsible for:</p>
+          <ul>
+            <li>ensuring that your use of scan results complies with applicable law and third-party rights;</li>
+            <li>verifying the correctness of scanned data before acting on it;</li>
+            <li>properly configuring any server, API, or destination used for data transmission;</li>
+            <li>protecting your own device, network, and operational environment.</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>您應自行負責：</p>
+          <ul>
+            <li>確保您對掃描結果的使用符合適用法律與第三方權利；</li>
+            <li>在依據掃描資料採取行動前，自行確認其正確性；</li>
+            <li>正確設定任何伺服器、API 或資料傳送目的端；</li>
+            <li>保護您自身的裝置、網路與作業環境。</li>
+          </ul>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>您应自行负责：</p>
+          <ul>
+            <li>确保您对扫描结果的使用符合适用法律与第三方权利；</li>
+            <li>在依据扫描数据采取行动前，自行确认其正确性；</li>
+            <li>正确配置任何服务器、API 或数据发送目标端；</li>
+            <li>保护您自身的设备、网络与运行环境。</li>
+          </ul>
+        </div>
+
+        <div data-lang="ja">
+          <p>お客様は以下について責任を負います。</p>
+          <ul>
+            <li>スキャン結果の利用が適用法令および第三者の権利に適合していること</li>
+            <li>スキャンデータに基づいて行動する前に、その正確性を確認すること</li>
+            <li>サーバー、API、送信先などを適切に設定すること</li>
+            <li>自身の端末、ネットワーク、運用環境を保護すること</li>
+          </ul>
+        </div>
+
+        <div data-lang="ko">
+          <p>귀하는 다음 사항에 대해 책임을 집니다.</p>
+          <ul>
+            <li>스캔 결과의 사용이 관련 법률 및 제3자 권리를 준수하는지 확인하는 것</li>
+            <li>스캔 데이터에 따라 조치하기 전에 정확성을 검증하는 것</li>
+            <li>서버, API 또는 전송 목적지를 올바르게 설정하는 것</li>
+            <li>자신의 기기, 네트워크 및 운영 환경을 보호하는 것</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="s4">
+        <h2 class="show" data-lang="en">4. Scan Accuracy Disclaimer</h2>
+        <h2 data-lang="zh-Hant">4. 掃描準確性聲明</h2>
+        <h2 data-lang="zh-Hans">4. 扫描准确性声明</h2>
+        <h2 data-lang="ja">4. スキャン精度に関する免責</h2>
+        <h2 data-lang="ko">4. 스캔 정확성 면책</h2>
+
+        <div class="show" data-lang="en">
+          <p>ScanJet is provided as a tool to assist scanning and data handling. We do not guarantee that every scan will be accurate, complete, uninterrupted, or error-free. Barcode quality, lighting, device camera performance, angle, reflection, and system configuration may affect results.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>ScanJet 為協助掃描與資料處理之工具。我們不保證每次掃描都會準確、完整、不中斷或無錯誤。條碼品質、光線、裝置相機效能、角度、反光與系統設定皆可能影響結果。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>ScanJet 为协助扫描与数据处理之工具。我们不保证每次扫描都准确、完整、不中断或无错误。条码质量、光线、设备相机性能、角度、反光与系统配置均可能影响结果。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>ScanJet はスキャンおよびデータ処理を支援するツールとして提供されます。当社は、すべてのスキャン結果が正確、完全、中断なく、またはエラーなしであることを保証しません。バーコード品質、照明、カメラ性能、角度、反射、システム設定などにより結果が影響を受ける場合があります。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>ScanJet은 스캔 및 데이터 처리를 지원하기 위한 도구로 제공됩니다. 당사는 모든 스캔 결과가 정확하고 완전하며 중단 없이 오류가 없다고 보장하지 않습니다. 바코드 품질, 조명, 카메라 성능, 각도, 반사 및 시스템 설정 등에 따라 결과가 달라질 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s5">
+        <h2 class="show" data-lang="en">5. Ads & Third-Party Services</h2>
+        <h2 data-lang="zh-Hant">5. 廣告與第三方服務</h2>
+        <h2 data-lang="zh-Hans">5. 广告与第三方服务</h2>
+        <h2 data-lang="ja">5. 広告および第三者サービス</h2>
+        <h2 data-lang="ko">5. 광고 및 제3자 서비스</h2>
+
+        <div class="show" data-lang="en">
+          <p>The app may include third-party services such as Google AdMob. Your use of such services may also be subject to the policies and terms of those third parties. We are not responsible for the content, availability, or practices of third-party services.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>本 App 可能包含第三方服務，例如 Google AdMob。您對該等服務的使用亦可能受其自身政策與條款約束。我們不對第三方服務的內容、可用性或作法負責。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>本 App 可能包含第三方服务，例如 Google AdMob。您对该等服务的使用亦可能受其自身政策与条款约束。我们不对第三方服务的内容、可用性或做法负责。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>本アプリには Google AdMob などの第三者サービスが含まれる場合があります。これら第三者サービスの利用は、それぞれのポリシーおよび規約にも従うものとします。当社は第三者サービスの内容、可用性、または運用について責任を負いません。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>본 앱에는 Google AdMob과 같은 제3자 서비스가 포함될 수 있습니다. 이러한 서비스의 이용은 해당 제3자의 정책 및 약관이 추가로 적용될 수 있습니다. 당사는 제3자 서비스의 내용, 가용성 또는 운영 방식에 대해 책임지지 않습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s6">
+        <h2 class="show" data-lang="en">6. Intellectual Property</h2>
+        <h2 data-lang="zh-Hant">6. 智慧財產權</h2>
+        <h2 data-lang="zh-Hans">6. 知识产权</h2>
+        <h2 data-lang="ja">6. 知的財産権</h2>
+        <h2 data-lang="ko">6. 지식재산권</h2>
+
+        <div class="show" data-lang="en">
+          <p>ScanJet, its design, branding, software, and related materials are owned by us or our licensors and are protected by intellectual property laws. These terms do not transfer ownership rights to you.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>ScanJet 及其設計、品牌、軟體與相關資料由我們或授權人擁有，並受智慧財產權法律保護。本條款不會將所有權移轉給您。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>ScanJet 及其设计、品牌、软件与相关资料由我们或授权方拥有，并受知识产权法律保护。本条款不会将所有权转移给您。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>ScanJet、そのデザイン、ブランド、ソフトウェア、および関連資料は当社またはライセンサーに帰属し、知的財産法により保護されています。本規約はこれらの所有権をお客様に移転するものではありません。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>ScanJet 및 그 디자인, 브랜드, 소프트웨어와 관련 자료는 당사 또는 라이선스 제공자에게 귀속되며 지식재산권법의 보호를 받습니다. 본 약관은 이러한 소유권을 귀하에게 이전하지 않습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s7">
+        <h2 class="show" data-lang="en">7. Limitation of Liability</h2>
+        <h2 data-lang="zh-Hant">7. 責任限制</h2>
+        <h2 data-lang="zh-Hans">7. 责任限制</h2>
+        <h2 data-lang="ja">7. 責任の制限</h2>
+        <h2 data-lang="ko">7. 책임 제한</h2>
+
+        <div class="show" data-lang="en">
+          <p>To the maximum extent permitted by law, ScanJet is provided “as is” and “as available.” We are not liable for indirect, incidental, special, consequential, or punitive damages, or for loss of data, profits, business, or opportunities resulting from your use of the app.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>在法律允許的最大範圍內，ScanJet 係以「現狀」及「可取得」基礎提供。我們不對因您使用本 App 所導致的間接、附帶、特殊、衍生性、懲罰性損害，或資料、利潤、商業、機會損失負責。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>在法律允许的最大范围内，ScanJet 以“现状”及“可取得”为基础提供。我们不对因您使用本 App 所导致的间接、附带、特殊、衍生性、惩罚性损害，或数据、利润、商业、机会损失负责。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>法令で許容される最大限の範囲において、ScanJet は「現状有姿」かつ「提供可能な範囲」で提供されます。当社は、本アプリの利用に起因する間接的、付随的、特別、結果的、懲罰的損害、またはデータ、利益、事業、機会の損失について責任を負いません。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>관련 법률이 허용하는 최대 범위 내에서 ScanJet은 “있는 그대로” 그리고 “이용 가능한 상태로” 제공됩니다. 당사는 앱 사용으로 인해 발생하는 간접적, 부수적, 특별, 결과적 또는 징벌적 손해나 데이터, 수익, 사업, 기회 손실에 대해 책임지지 않습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s8">
+        <h2 class="show" data-lang="en">8. Termination</h2>
+        <h2 data-lang="zh-Hant">8. 終止</h2>
+        <h2 data-lang="zh-Hans">8. 终止</h2>
+        <h2 data-lang="ja">8. 終了</h2>
+        <h2 data-lang="ko">8. 종료</h2>
+
+        <div class="show" data-lang="en">
+          <p>We may suspend or terminate access to ScanJet if required for security, legal compliance, operational reasons, or if these terms are violated. You may stop using the app at any time by uninstalling it.</p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>若基於安全、法律遵循、營運需求，或您違反本條款，我們可能暫停或終止您對 ScanJet 的存取。您亦可隨時透過解除安裝停止使用本 App。</p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>若基于安全、法律遵循、运营需求，或您违反本条款，我们可能暂停或终止您对 ScanJet 的访问。您也可随时通过卸载停止使用本 App。</p>
+        </div>
+
+        <div data-lang="ja">
+          <p>セキュリティ、法令遵守、運用上の理由、または本規約違反がある場合、当社は ScanJet へのアクセスを停止または終了することがあります。お客様はいつでもアプリをアンインストールすることで利用を中止できます。</p>
+        </div>
+
+        <div data-lang="ko">
+          <p>보안, 법적 준수, 운영상 이유 또는 본 약관 위반이 있는 경우 당사는 ScanJet에 대한 접근을 일시 중지하거나 종료할 수 있습니다. 귀하는 언제든지 앱을 삭제하여 사용을 중단할 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="section" id="s9">
+        <h2 class="show" data-lang="en">9. Contact</h2>
+        <h2 data-lang="zh-Hant">9. 聯絡方式</h2>
+        <h2 data-lang="zh-Hans">9. 联系方式</h2>
+        <h2 data-lang="ja">9. 連絡先</h2>
+        <h2 data-lang="ko">9. 연락처</h2>
+
+        <div class="show" data-lang="en">
+          <p>Questions about these Terms of Service may be sent to:</p>
+          <p><strong>Email:</strong> <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="zh-Hant">
+          <p>若您對本服務條款有任何疑問，請寄送至：</p>
+          <p><strong>電子郵件：</strong> <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="zh-Hans">
+          <p>若您对本服务条款有任何疑问，请发送至：</p>
+          <p><strong>电子邮件：</strong> <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="ja">
+          <p>本利用規約に関するご質問は、以下までご連絡ください。</p>
+          <p><strong>メール：</strong> <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+
+        <div data-lang="ko">
+          <p>본 서비스 약관에 관한 문의는 아래 이메일로 보내주시기 바랍니다.</p>
+          <p><strong>이메일:</strong> <a href="mailto:jasperic26@gmail.com">jasperic26@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-card">
+      <div class="show" data-lang="en">© 2026 ScanJet. All rights reserved.</div>
+      <div data-lang="zh-Hant">© 2026 ScanJet。保留所有權利。</div>
+      <div data-lang="zh-Hans">© 2026 ScanJet。保留所有权利。</div>
+      <div data-lang="ja">© 2026 ScanJet. All rights reserved.</div>
+      <div data-lang="ko">© 2026 ScanJet. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const buttons = document.querySelectorAll('[data-set-lang]');
+      const blocks = document.querySelectorAll('[data-lang]');
+      const defaultLang = localStorage.getItem('scanjet_lang') || 'en';
+
+      function setLang(lang){
+        blocks.forEach(el => {
+          el.classList.toggle('show', el.getAttribute('data-lang') === lang);
+        });
+
+        buttons.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-set-lang') === lang);
+        });
+
+        document.documentElement.lang = lang;
+        localStorage.setItem('scanjet_lang', lang);
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLang(btn.getAttribute('data-set-lang'));
+        });
+      });
+
+      setLang(defaultLang);
+    })();
+  </script>
+</body>
+</html>
