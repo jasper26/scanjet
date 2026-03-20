@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScanJet Operation Manual</title>
+  <meta name="description" content="ScanJet 掃碼與數據傳輸工具操作說明書" />
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --panel:rgba(255,255,255,.06);
+      --panel-2:rgba(255,255,255,.04);
+      --panel-border:rgba(255,255,255,.10);
+      --text:#f5f7fb;
+      --muted:#a9b1c3;
+      --line:rgba(255,255,255,.08);
+      --accent:#6ec1ff;
+      --accent2:#8b5cf6;
+      --good:#34d399;
+      --warn:#f59e0b;
+      --danger:#fb7185;
+      --shadow:0 24px 80px rgba(0,0,0,.42);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 500px at 20% -10%, rgba(110,193,255,.14), transparent 60%),
+        radial-gradient(900px 480px at 100% 10%, rgba(139,92,246,.14), transparent 58%),
+        linear-gradient(180deg,#0a0c11,#0b0d12 40%,#0a0c10 100%);
+      line-height:1.65;
+    }
+
+    a{color:var(--accent);text-decoration:none}
+    img{max-width:100%}
+    code{
+      background:rgba(255,255,255,.08);
+      padding:.18rem .45rem;
+      border-radius:8px;
+      font-size:.95em;
+    }
+
+    .wrap{width:min(var(--max), calc(100% - 28px)); margin:0 auto}
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:72px 0 28px;
+      border-bottom:1px solid var(--line);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto -10% -120px auto;
+      width:420px;
+      height:420px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(110,193,255,.18), rgba(110,193,255,0) 65%);
+      filter:blur(20px);
+      pointer-events:none;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+
+    .lang-switch{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      padding:8px;
+      border:1px solid var(--panel-border);
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+    }
+    .lang-switch button{
+      appearance:none;
+      border:none;
+      color:#dbe7ff;
+      background:transparent;
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font:inherit;
+    }
+    .lang-switch button.active{
+      color:#08111d;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      font-weight:700;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--panel-border);
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      color:#dbe7ff;
+      font-size:13px;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+    .badge .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 18px rgba(110,193,255,.7);
+    }
+
+    h1{
+      margin:18px 0 14px;
+      font-size:clamp(34px, 5vw, 60px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    .lead{
+      color:#d6def0;
+      font-size:clamp(16px, 1.8vw, 20px);
+      max-width:760px;
+    }
+
+    .hero-card,
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid var(--panel-border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero-card{padding:22px}
+    .hero-card h3{margin:0 0 12px;font-size:18px}
+    .mini-list{display:grid; gap:12px; margin:0; padding:0; list-style:none}
+    .mini-list li{
+      padding:12px 14px;
+      border-radius:14px;
+      background:var(--panel-2);
+      border:1px solid rgba(255,255,255,.07);
+      color:#d8e0f1;
+    }
+    .mini-list b{color:#fff}
+
+    .toc{
+      position:sticky;
+      top:16px;
+      padding:18px;
+    }
+    .toc h3{margin:0 0 12px;font-size:16px;color:#fff}
+    .toc a{
+      display:block;
+      padding:10px 12px;
+      margin:4px 0;
+      border-radius:12px;
+      color:#d3ddf3;
+      border:1px solid transparent;
+    }
+    .toc a:hover{
+      background:rgba(255,255,255,.05);
+      border-color:rgba(255,255,255,.07);
+    }
+
+    .section{
+      padding:26px 0;
+    }
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .eyebrow{
+      color:var(--accent);
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin-bottom:8px;
+      display:block;
+    }
+    h2{
+      margin:0;
+      font-size:clamp(26px, 3vw, 40px);
+      line-height:1.15;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      color:var(--muted);
+      max-width:760px;
+    }
+
+    .grid-2,.grid-3{
+      display:grid;
+      gap:18px;
+    }
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .card{
+      padding:22px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      border:1px solid var(--panel-border);
+      box-shadow:var(--shadow);
+    }
+    .card h3{margin:0 0 12px;font-size:19px}
+    .card p{margin:0;color:#d6def0}
+
+    .flow{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+    .flow .step{
+      position:relative;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      min-height:132px;
+    }
+    .flow .step:not(:last-child)::after{
+      content:"→";
+      position:absolute;
+      right:-12px;
+      top:50%;
+      transform:translateY(-50%);
+      color:rgba(255,255,255,.36);
+      font-size:26px;
+      z-index:2;
+    }
+    .n{
+      display:inline-flex;
+      width:30px;height:30px;
+      align-items:center;justify-content:center;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#08111d;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+    .step h4{margin:0 0 8px;font-size:17px}
+    .step p{margin:0;color:var(--muted);font-size:14px}
+
+    .table-wrap{
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid var(--panel-border);
+      background:rgba(255,255,255,.035);
+      box-shadow:var(--shadow);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:840px;
+    }
+    th,td{
+      padding:16px 18px;
+      text-align:left;
+      vertical-align:top;
+      border-bottom:1px solid var(--line);
+    }
+    th{
+      color:#fff;
+      font-size:14px;
+      background:rgba(255,255,255,.04);
+    }
+    td{color:#d7e0f2}
+
+    .callout{
+      padding:20px 22px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.1);
+      background:linear-gradient(180deg, rgba(110,193,255,.10), rgba(139,92,246,.08));
+      color:#eef5ff;
+    }
+    .callout.warn{
+      background:linear-gradient(180deg, rgba(245,158,11,.12), rgba(245,158,11,.07));
+      border-color:rgba(245,158,11,.22);
+    }
+    .callout.good{
+      background:linear-gradient(180deg, rgba(52,211,153,.12), rgba(52,211,153,.07));
+      border-color:rgba(52,211,153,.22);
+    }
+
+    .check, .bullets{
+      margin:0;
+      padding-left:20px;
+      color:#d8e1f3;
+    }
+    .check li, .bullets li{margin:8px 0}
+
+    .footer{
+      padding:26px 0 56px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:22px;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .flow{grid-template-columns:1fr 1fr 1fr}
+      .flow .step:not(:last-child)::after{display:none}
+      main.wrap{grid-template-columns:1fr !important}
+    }
+
+    @media (max-width: 760px){
+      .hero{padding-top:54px}
+      .grid-2,.grid-3,.flow{grid-template-columns:1fr}
+      .section{padding:20px 0}
+      .card,.hero-card,.toc{padding:18px}
+      h1{font-size:40px}
+      .topbar{align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="topbar">
+        <div class="badge"><span class="dot"></span> <span data-i18n="badge">ScanJet User Guide</span></div>
+        <div class="lang-switch" aria-label="Language switcher">
+          <button class="active" data-lang="en">EN</button>
+          <button data-lang="zh-Hant">繁中</button>
+          <button data-lang="zh-Hans">简中</button>
+          <button data-lang="ja">日本語</button>
+          <button data-lang="ko">한국어</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap hero-grid">
+      <div>
+        <h1 data-i18n="titleMain">ScanJet Operation Manual</h1>
+        <p class="lead" data-i18n-html="lead"></p>
+      </div>
+      <aside class="hero-card">
+        <h3 data-i18n="docHighlights">Document Highlights</h3>
+        <ul class="mini-list">
+          <li data-i18n-html="highlight1"></li>
+          <li data-i18n-html="highlight2"></li>
+          <li data-i18n-html="highlight3"></li>
+          <li data-i18n-html="highlight4"></li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding:26px 0 10px; display:grid; grid-template-columns:minmax(0,1fr) 290px; gap:22px; align-items:start;">
+    <div>
+      <section class="section" id="overview">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="overviewEyebrow">Overview</span>
+            <h2 data-i18n="overviewTitle">1. App Overview</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3 data-i18n="overviewCard1Title">Real-Time Scanning</h3>
+            <p data-i18n="overviewCard1Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="overviewCard2Title">Data Transmission</h3>
+            <p data-i18n="overviewCard2Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="overviewCard3Title">History Management</h3>
+            <p data-i18n="overviewCard3Body"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="workflow">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="workflowEyebrow">Workflow</span>
+            <h2 data-i18n="workflowTitle">2. System Workflow</h2>
+            <p class="sub" data-i18n="workflowSub"></p>
+          </div>
+        </div>
+        <div class="panel" style="padding:22px;">
+          <div class="flow">
+            <div class="step">
+              <div class="n">1</div>
+              <h4 data-i18n="step1Title">Open Scanner</h4>
+              <p data-i18n="step1Body"></p>
+            </div>
+            <div class="step">
+              <div class="n">2</div>
+              <h4 data-i18n="step2Title">Recognize & Decode</h4>
+              <p data-i18n="step2Body"></p>
+            </div>
+            <div class="step">
+              <div class="n">3</div>
+              <h4 data-i18n="step3Title">Display Result</h4>
+              <p data-i18n="step3Body"></p>
+            </div>
+            <div class="step">
+              <div class="n">4</div>
+              <h4 data-i18n="step4Title">Transmit Data</h4>
+              <p data-i18n="step4Body"></p>
+            </div>
+            <div class="step">
+              <div class="n">5</div>
+              <h4 data-i18n="step5Title">Write History</h4>
+              <p data-i18n="step5Body"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="scan">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="scanEyebrow">Scanning</span>
+            <h2 data-i18n="scanTitle">3. How to Scan</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3 data-i18n="scanStartTitle">3.1 Start Scanning</h3>
+            <ol class="bullets">
+              <li data-i18n="scanStart1"></li>
+              <li data-i18n="scanStart2"></li>
+              <li data-i18n="scanStart3"></li>
+              <li data-i18n="scanStart4"></li>
+            </ol>
+          </article>
+          <article class="card">
+            <h3 data-i18n="scanTipsTitle">3.2 Scanning Tips</h3>
+            <ul class="check">
+              <li data-i18n="scanTip1"></li>
+              <li data-i18n="scanTip2"></li>
+              <li data-i18n="scanTip3"></li>
+              <li data-i18n="scanTip4"></li>
+            </ul>
+          </article>
+        </div>
+        <div class="callout warn" style="margin-top:18px;">
+          <b data-i18n="noteLabel">Note:</b> <span data-i18n="scanNote"></span>
+        </div>
+      </section>
+
+      <section class="section" id="result">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="resultEyebrow">Result</span>
+            <h2 data-i18n="resultTitle">4. Scan Result Screen</h2>
+            <p class="sub" data-i18n="resultSub"></p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="tableColField">Field</th>
+                <th data-i18n="tableColDesc">Description</th>
+                <th data-i18n="tableColUse">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Raw Data</b></td>
+                <td data-i18n="resultRawDesc"></td>
+                <td data-i18n="resultRawUse"></td>
+              </tr>
+              <tr>
+                <td><b>Status</b></td>
+                <td data-i18n="resultStatusDesc"></td>
+                <td data-i18n="resultStatusUse"></td>
+              </tr>
+              <tr>
+                <td><b>Last Error</b></td>
+                <td data-i18n="resultErrorDesc"></td>
+                <td data-i18n="resultErrorUse"></td>
+              </tr>
+              <tr>
+                <td><b>Timestamp</b></td>
+                <td data-i18n="resultTimeDesc"></td>
+                <td data-i18n="resultTimeUse"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="transport">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="transportEyebrow">Transport</span>
+            <h2 data-i18n="transportTitle">5. Data Transmission Modes</h2>
+            <p class="sub" data-i18n="transportSub"></p>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3 data-i18n="transportCard1Title">Auto Send Mode</h3>
+            <p data-i18n="transportCard1Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="transportCard2Title">Manual Send Mode</h3>
+            <p data-i18n="transportCard2Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="transportCard3Title">Resend Mode</h3>
+            <p data-i18n="transportCard3Body"></p>
+          </article>
+        </div>
+
+        <div class="table-wrap" style="margin-top:18px;">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="settingItem">Setting Item</th>
+                <th data-i18n="settingDesc">Description</th>
+                <th data-i18n="settingExample">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Target Address</b></td>
+                <td data-i18n="targetAddressDesc"></td>
+                <td><code>https://example.com/api/scan</code>、<code>192.168.1.100:9000</code></td>
+              </tr>
+              <tr>
+                <td><b>Method / Protocol</b></td>
+                <td data-i18n="methodDesc"></td>
+                <td><code>POST</code>、<code>TCP Client</code></td>
+              </tr>
+              <tr>
+                <td><b>Payload</b></td>
+                <td data-i18n="payloadDesc"></td>
+                <td><code>{"code":"123456789"}</code></td>
+              </tr>
+              <tr>
+                <td><b>Timeout</b></td>
+                <td data-i18n="timeoutDesc"></td>
+                <td><code>3s</code>、<code>5s</code></td>
+              </tr>
+              <tr>
+                <td><b>Retry</b></td>
+                <td data-i18n="retryDesc"></td>
+                <td><code>Manual Retry</code> / <code>Auto Retry</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout" style="margin-top:18px;">
+          <b data-i18n="recommendedPractice">Recommended Practice:</b> <span data-i18n="transportCallout"></span>
+        </div>
+      </section>
+
+      <section class="section" id="history">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="historyEyebrow">History</span>
+            <h2 data-i18n="historyTitle">6. History & Copy Functions</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3 data-i18n="historyCard1Title">6.1 History Content</h3>
+            <ul class="check">
+              <li data-i18n="historyItem1"></li>
+              <li data-i18n="historyItem2"></li>
+              <li data-i18n="historyItem3"></li>
+              <li data-i18n="historyItem4"></li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3 data-i18n="historyCard2Title">6.2 Long Press to Copy</h3>
+            <p data-i18n="historyCard2Body"></p>
+          </article>
+        </div>
+        <div class="grid-2" style="margin-top:18px;">
+          <article class="card">
+            <h3 data-i18n="historyCard3Title">6.3 Resend History Data</h3>
+            <p data-i18n="historyCard3Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="historyCard4Title">6.4 History Usage</h3>
+            <p data-i18n="historyCard4Body"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="settings">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="settingsEyebrow">Settings</span>
+            <h2 data-i18n="settingsTitle">7. Recommended Settings</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="settingItem">Setting Item</th>
+                <th data-i18n="recommendedContent">Recommended Value</th>
+                <th data-i18n="tableColDesc">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Camera Permission</b></td>
+                <td data-i18n="settingsCameraValue"></td>
+                <td data-i18n="settingsCameraDesc"></td>
+              </tr>
+              <tr>
+                <td><b>Auto Send</b></td>
+                <td data-i18n="settingsAutoValue"></td>
+                <td data-i18n="settingsAutoDesc"></td>
+              </tr>
+              <tr>
+                <td><b>Deduplicate Window</b></td>
+                <td data-i18n="settingsDedupeValue"></td>
+                <td data-i18n="settingsDedupeDesc"></td>
+              </tr>
+              <tr>
+                <td><b>History Save</b></td>
+                <td data-i18n="settingsHistoryValue"></td>
+                <td data-i18n="settingsHistoryDesc"></td>
+              </tr>
+              <tr>
+                <td><b>Transport Timeout</b></td>
+                <td data-i18n="settingsTimeoutValue"></td>
+                <td data-i18n="settingsTimeoutDesc"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="example">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="exampleEyebrow">Example</span>
+            <h2 data-i18n="exampleTitle">8. Usage Examples</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3 data-i18n="exampleCard1Title">Scenario A: Production-Line Upload</h3>
+            <p data-i18n-html="exampleCard1Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="exampleCard2Title">Scenario B: Manual Review Before Sending</h3>
+            <p data-i18n="exampleCard2Body"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="troubleshooting">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="troubleEyebrow">Troubleshooting</span>
+            <h2 data-i18n="troubleTitle">9. Common Troubleshooting</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="problem">Problem</th>
+                <th data-i18n="possibleCause">Possible Cause</th>
+                <th data-i18n="suggestedAction">Suggested Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="trouble1Problem"></td>
+                <td data-i18n="trouble1Cause"></td>
+                <td data-i18n="trouble1Action"></td>
+              </tr>
+              <tr>
+                <td data-i18n="trouble2Problem"></td>
+                <td data-i18n="trouble2Cause"></td>
+                <td data-i18n="trouble2Action"></td>
+              </tr>
+              <tr>
+                <td data-i18n="trouble3Problem"></td>
+                <td data-i18n="trouble3Cause"></td>
+                <td data-i18n="trouble3Action"></td>
+              </tr>
+              <tr>
+                <td data-i18n="trouble4Problem"></td>
+                <td data-i18n="trouble4Cause"></td>
+                <td data-i18n="trouble4Action"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout good" style="margin-top:18px;">
+          <b data-i18n="troubleTipLabel">Troubleshooting Tip:</b> <span data-i18n="troubleTip"></span>
+        </div>
+      </section>
+
+      <section class="section" id="best-practice">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="bestEyebrow">Best Practice</span>
+            <h2 data-i18n="bestTitle">10. Usage Recommendations</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <h3 data-i18n="bestCard1Title">Keep Codes Clear</h3>
+            <p data-i18n="bestCard1Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="bestCard2Title">Verify Format First</h3>
+            <p data-i18n="bestCard2Body"></p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="bestCard3Title">Keep History Records</h3>
+            <p data-i18n="bestCard3Body"></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="summary">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow" data-i18n="summaryEyebrow">Summary</span>
+            <h2 data-i18n="summaryTitle">11. Summary</h2>
+          </div>
+        </div>
+        <div class="callout" data-i18n-html="summaryBody"></div>
+      </section>
+    </div>
+
+    <aside class="panel toc" aria-label="Table of contents">
+      <h3 data-i18n="tocTitle">Contents</h3>
+      <a href="#overview" data-i18n="toc1">1. App Overview</a>
+      <a href="#workflow" data-i18n="toc2">2. System Workflow</a>
+      <a href="#scan" data-i18n="toc3">3. How to Scan</a>
+      <a href="#result" data-i18n="toc4">4. Scan Result Screen</a>
+      <a href="#transport" data-i18n="toc5">5. Data Transmission Modes</a>
+      <a href="#history" data-i18n="toc6">6. History Records</a>
+      <a href="#settings" data-i18n="toc7">7. Recommended Settings</a>
+      <a href="#example" data-i18n="toc8">8. Usage Examples</a>
+      <a href="#troubleshooting" data-i18n="toc9">9. Troubleshooting</a>
+      <a href="#best-practice" data-i18n="toc10">10. Best Practice</a>
+      <a href="#summary" data-i18n="toc11">11. Summary</a>
+    </aside>
+  </main>
+
+  <footer class="wrap footer">
+    <div data-i18n="footerDoc">Document: ScanJet Operation Manual</div>
+    <div data-i18n="footerUse">Purpose: Help users quickly understand how ScanJet handles scanning, display, data transmission, and history records.</div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        badge: "ScanJet User Guide",
+        titleMain: "ScanJet Operation Manual",
+        lead: 'This document is the complete operation manual for the ScanJet app. It is written based on the actual usage flow, with the core pattern of <b>Scan → Display Data → Transmit Data → Save History</b>. It is suitable for scenarios where barcodes / QR codes need to be read quickly and the content must be sent to external systems, servers, APIs, or designated devices.',
+        docHighlights: "Document Highlights",
+        highlight1: '<b>Supported codes:</b> Common symbologies such as 1D barcodes, 2D codes, and QR codes',
+        highlight2: '<b>Core flow:</b> Real-time scanning, Raw Data parsing, and automatic or manual transmission based on settings',
+        highlight3: '<b>Transmission focus:</b> Select the appropriate transport method and content format for the target system',
+        highlight4: '<b>Operator support:</b> History records, long-press copy, resend, and status prompts',
+        overviewEyebrow: "Overview",
+        overviewTitle: "1. App Overview",
+        overviewCard1Title: "Real-Time Scanning",
+        overviewCard1Body: "Use the mobile camera to recognize barcodes and QR codes in real time, and display the decoded content immediately after a successful scan.",
+        overviewCard2Title: "Data Transmission",
+        overviewCard2Body: "Send scan results to a specified destination according to system settings, such as an API, server, socket, or custom receiver.",
+        overviewCard3Title: "History Management",
+        overviewCard3Body: "Automatically retain scan records for searching, copying, troubleshooting, resending, and on-site traceability.",
+        workflowEyebrow: "Workflow",
+        workflowTitle: "2. System Workflow",
+        workflowSub: "The main logic of ScanJet is to decode successfully first, then transmit based on settings, and finally write the result into history records.",
+        step1Title: "Open Scanner",
+        step1Body: "After the user enters the scanning page, the camera starts reading barcodes and QR codes within the field of view.",
+        step2Title: "Recognize & Decode",
+        step2Body: "The system identifies the code type and converts the content into a readable Raw Data string.",
+        step3Title: "Display Result",
+        step3Body: "The successfully scanned data is displayed on the screen for immediate checking, copying, or later transmission.",
+        step4Title: "Transmit Data",
+        step4Body: "Send data according to the configured target address, format, and transmission mode.",
+        step5Title: "Write History",
+        step5Body: "Save the scanned content, time, and result status for later traceability and resend operations.",
+        scanEyebrow: "Scanning",
+        scanTitle: "3. How to Scan",
+        scanStartTitle: "3.1 Start Scanning",
+        scanStart1: "Open the ScanJet app and enter the scanning page.",
+        scanStart2: "Point the camera at the barcode or QR code and keep the image clear and stable.",
+        scanStart3: "Once the system recognizes the code successfully, the scan result will be displayed immediately.",
+        scanStart4: "If auto-send is enabled, the system will automatically send the data after a successful scan.",
+        scanTipsTitle: "3.2 Scanning Tips",
+        scanTip1: "Keep the environment well lit and avoid glare or excessive shadows.",
+        scanTip2: "Make sure the barcode is fully visible on the screen without obstruction or excessive tilt.",
+        scanTip3: "Move closer for small codes; move slightly farther away for large codes.",
+        scanTip4: "For continuous scanning, move to the next code only after each record is completed to avoid accidental duplicate scans.",
+        noteLabel: "Note:",
+        scanNote: "If the same content appears in front of the camera repeatedly within a short period, the system can avoid duplicate transmission triggers based on the Deduplicate Window setting.",
+        resultEyebrow: "Result",
+        resultTitle: "4. Scan Result Screen",
+        resultSub: "After a successful scan, the system usually displays the raw string, status message, and transmission status.",
+        tableColField: "Field",
+        tableColDesc: "Description",
+        tableColUse: "Purpose",
+        resultRawDesc: "The original content string parsed after scanning.",
+        resultRawUse: "For users to verify, copy, transmit, or paste into other systems.",
+        resultStatusDesc: "Current system status, such as Ready, Sending, Sent, Failed, etc.",
+        resultStatusUse: "Quickly determine whether transmission succeeded or an error occurred.",
+        resultErrorDesc: "If transmission fails, the corresponding error message will be displayed.",
+        resultErrorUse: "Helps troubleshoot network, address, or format problems on site.",
+        resultTimeDesc: "The time record of this scan.",
+        resultTimeUse: "Useful for traceability and history lookup.",
+        transportEyebrow: "Transport",
+        transportTitle: "5. Data Transmission Modes",
+        transportSub: "ScanJet's transmission behavior can be configured according to the actual receiver requirements. The core differences between modes are the sending method, address, and packet format.",
+        transportCard1Title: "Auto Send Mode",
+        transportCard1Body: "Data is sent immediately after a successful scan. Suitable for continuous operations such as production lines, warehousing, shipping, and workstation reporting.",
+        transportCard2Title: "Manual Send Mode",
+        transportCard2Body: "The result is displayed first after scanning, and the user sends it only after confirming that the content is correct. Suitable for processes requiring manual review.",
+        transportCard3Title: "Resend Mode",
+        transportCard3Body: "You can select a record from history and transmit it again. Suitable for retransmission after network interruption or system retry.",
+        settingItem: "Setting Item",
+        settingDesc: "Description",
+        settingExample: "Example",
+        targetAddressDesc: "The target address or endpoint that receives the data.",
+        methodDesc: "The transport method, such as HTTP, TCP, Socket, or other custom modes.",
+        payloadDesc: "The format of the outgoing data, which can be plain text, JSON, or a custom string.",
+        timeoutDesc: "The time to wait for a response from the other side. If it times out, the transmission is considered failed.",
+        retryDesc: "Whether retransmission is allowed when sending fails.",
+        recommendedPractice: "Recommended Practice:",
+        transportCallout: "If your receiver is MES, ERP, or an internal server, first confirm whether it expects plain strings, JSON, specified fields, or a specific protocol format, and then configure ScanJet's transmission content accordingly.",
+        historyEyebrow: "History",
+        historyTitle: "6. History & Copy Functions",
+        historyCard1Title: "6.1 History Content",
+        historyItem1: "Scan time",
+        historyItem2: "Raw Data content",
+        historyItem3: "Transmission status",
+        historyItem4: "Error message (if any)",
+        historyCard2Title: "6.2 Long Press to Copy",
+        historyCard2Body: "On the scan result page or in the history list, long-press Raw Data to quickly copy the content so it can be pasted into other apps, reporting systems, or messaging tools.",
+        historyCard3Title: "6.3 Resend History Data",
+        historyCard3Body: "If a previous transmission failed due to network or server issues, you can select that record in history and transmit it again without rescanning.",
+        historyCard4Title: "6.4 History Usage",
+        historyCard4Body: "History is not only for lookup. It can also be used for on-site troubleshooting, process tracking, audit comparison, and exception recovery.",
+        settingsEyebrow: "Settings",
+        settingsTitle: "7. Recommended Settings",
+        recommendedContent: "Recommended Value",
+        settingsCameraValue: "Allow",
+        settingsCameraDesc: "If camera access is not granted, scanning cannot be used.",
+        settingsAutoValue: "Depends on site needs",
+        settingsAutoDesc: "Recommended ON for production lines; recommended OFF for manual review scenarios.",
+        settingsDedupeValue: "1–3 seconds",
+        settingsDedupeDesc: "Prevents repeated triggering when the camera stays aimed at the same code.",
+        settingsHistoryValue: "Enabled",
+        settingsHistoryDesc: "Keeping records is recommended for traceability and resend operations.",
+        settingsTimeoutValue: "3–5 seconds",
+        settingsTimeoutDesc: "Balances real-time performance and connection stability.",
+        exampleEyebrow: "Example",
+        exampleTitle: "8. Usage Examples",
+        exampleCard1Title: "Scenario A: Production-Line Upload",
+        exampleCard1Body: 'An operator points the phone at a product barcode. ScanJet immediately recognizes and reads the data, then sends it automatically to the factory server. After success, the screen shows <code>Sent</code>, and a history record is retained at the same time.',
+        exampleCard2Title: "Scenario B: Manual Review Before Sending",
+        exampleCard2Body: "The user scans a barcode first, confirms that the Raw Data shown on the screen is correct, and then manually taps send. Suitable for workflows that require checking batch numbers, work order numbers, or serial numbers.",
+        troubleEyebrow: "Troubleshooting",
+        troubleTitle: "9. Common Troubleshooting",
+        problem: "Problem",
+        possibleCause: "Possible Cause",
+        suggestedAction: "Suggested Action",
+        trouble1Problem: "Unable to scan",
+        trouble1Cause: "Camera permission not granted, blurry barcode, improper distance, insufficient lighting",
+        trouble1Action: "Check camera permission, adjust angle and distance, and improve lighting conditions",
+        trouble2Problem: "Scanned but not transmitted",
+        trouble2Cause: "Auto-send disabled, incorrect target address, network interruption",
+        trouble2Action: "Check transmission settings, network status, and whether the receiver service is running properly",
+        trouble3Problem: "Same data sent repeatedly",
+        trouble3Cause: "Camera remains on the same code for too long, deduplication time too short",
+        trouble3Action: "Increase the Deduplicate Window and move the camera away after scanning",
+        trouble4Problem: "Transmission failed",
+        trouble4Cause: "API no response, server rejection, invalid format, timeout",
+        trouble4Action: "Check Last Error and confirm the receiver's required format and protocol",
+        troubleTipLabel: "Troubleshooting Tip:",
+        troubleTip: "To quickly identify the source of a problem, first disable auto-send and test whether scanning and display work normally. Then test the target address, packet format, and receiver response separately.",
+        bestEyebrow: "Best Practice",
+        bestTitle: "10. Usage Recommendations",
+        bestCard1Title: "Keep Codes Clear",
+        bestCard1Body: "Avoid dirt, wrinkles, excessive glare, and obstruction to improve recognition stability.",
+        bestCard2Title: "Verify Format First",
+        bestCard2Body: "Before going live, use test codes to verify that the Raw Data meets the receiver's requirements.",
+        bestCard3Title: "Keep History Records",
+        bestCard3Body: "Keeping records is recommended for troubleshooting, tracking, and retransmission of missed data, especially for on-site operations.",
+        summaryEyebrow: "Summary",
+        summaryTitle: "11. Summary",
+        summaryBody: 'The core value of ScanJet is <b>fast scanning, clear display, stable transmission, and traceable management</b>.<br />As long as the transmission address, format, and mode are configured correctly according to the actual receiver requirements, ScanJet can serve as a highly efficient on-site barcode scanning and data exchange tool.',
+        tocTitle: "Contents",
+        toc1: "1. App Overview",
+        toc2: "2. System Workflow",
+        toc3: "3. How to Scan",
+        toc4: "4. Scan Result Screen",
+        toc5: "5. Data Transmission Modes",
+        toc6: "6. History Records",
+        toc7: "7. Recommended Settings",
+        toc8: "8. Usage Examples",
+        toc9: "9. Troubleshooting",
+        toc10: "10. Best Practice",
+        toc11: "11. Summary",
+        footerDoc: "Document: ScanJet Operation Manual",
+        footerUse: "Purpose: Help users quickly understand how ScanJet handles scanning, display, data transmission, and history records."
+      },
+      "zh-Hant": {
+        badge: "ScanJet 使用指南",
+        titleMain: "ScanJet 操作說明書",
+        lead: '本文件為 ScanJet App 的完整操作手冊，依照實際使用流程撰寫，核心模式為 <b>掃碼 → 顯示資料 → 傳輸數據 → 保存歷史紀錄</b>。適用於需快速讀取條碼 / QR Code，並將內容傳送到外部系統、伺服器、API 或指定設備的使用場景。',
+        docHighlights: "文件重點",
+        highlight1: '<b>支援對象：</b> 1D 條碼、2D Code、QR Code 等常見碼制',
+        highlight2: '<b>核心流程：</b> 即時掃描、解析 Raw Data、依設定自動或手動傳輸',
+        highlight3: '<b>傳輸重點：</b> 可依目標系統選擇對應的傳輸方式與內容格式',
+        highlight4: '<b>操作輔助：</b> 歷史紀錄、長按複製、重新發送、狀態提示',
+        overviewEyebrow: "Overview",
+        overviewTitle: "1. App 功能概述",
+        overviewCard1Title: "即時掃碼",
+        overviewCard1Body: "透過手機相機即時辨識條碼與 QR Code，掃描成功後立即顯示解碼內容。",
+        overviewCard2Title: "數據傳輸",
+        overviewCard2Body: "依照系統設定，將掃描結果傳送到指定目標，例如 API、Server、Socket 或自訂接收端。",
+        overviewCard3Title: "歷史管理",
+        overviewCard3Body: "自動保留掃描紀錄，方便查詢、複製、除錯、再次發送與現場追蹤。",
+        workflowEyebrow: "Workflow",
+        workflowTitle: "2. 系統運作流程",
+        workflowSub: "ScanJet 的主要邏輯是先成功解碼，再依照設定進行傳輸，最後寫入歷史紀錄。",
+        step1Title: "開啟掃描器",
+        step1Body: "使用者進入掃描頁面後，相機開始讀取視野內的條碼與 QR Code。",
+        step2Title: "辨識與解碼",
+        step2Body: "系統辨識碼制並將內容轉為可讀取的 Raw Data 字串。",
+        step3Title: "顯示結果",
+        step3Body: "將掃碼成功的資料顯示於畫面，可供立即檢查、複製或後續傳送。",
+        step4Title: "傳輸數據",
+        step4Body: "依設定的目標位址、格式與傳輸模式送出資料。",
+        step5Title: "寫入歷史",
+        step5Body: "保存掃描內容、時間與結果狀態，方便後續追溯與重送。",
+        scanEyebrow: "Scanning",
+        scanTitle: "3. 掃碼操作方式",
+        scanStartTitle: "3.1 開始掃描",
+        scanStart1: "打開 ScanJet App，進入掃描頁面。",
+        scanStart2: "將鏡頭對準條碼或 QR Code，保持影像清楚穩定。",
+        scanStart3: "系統辨識成功後，會立即顯示掃描結果。",
+        scanStart4: "若已啟用自動傳輸，系統會於掃碼成功後自動送出資料。",
+        scanTipsTitle: "3.2 掃描建議",
+        scanTip1: "請保持環境光源足夠，避免反光與過度陰影。",
+        scanTip2: "請讓條碼完整出現在畫面中，避免遮擋與過度傾斜。",
+        scanTip3: "若為小尺寸碼，請適度靠近；若為大尺寸碼，請稍微拉遠。",
+        scanTip4: "連續掃描時，建議每筆資料完成後再移向下一個碼，避免誤重複掃描。",
+        noteLabel: "注意：",
+        scanNote: "若相同內容在短時間內連續出現在鏡頭前，系統可依去重複設定（Deduplicate Window）避免重複觸發傳輸。",
+        resultEyebrow: "Result",
+        resultTitle: "4. 掃描結果畫面說明",
+        resultSub: "掃碼成功後，系統通常會顯示原始字串、狀態訊息與傳輸狀態。",
+        tableColField: "欄位",
+        tableColDesc: "說明",
+        tableColUse: "用途",
+        resultRawDesc: "掃描後解析出的原始內容字串。",
+        resultRawUse: "供使用者確認、複製、傳輸或貼到其他系統。",
+        resultStatusDesc: "目前系統狀態，例如 Ready、Sending、Sent、Failed 等。",
+        resultStatusUse: "快速判斷目前是否傳送成功或發生錯誤。",
+        resultErrorDesc: "若傳輸失敗，會顯示對應錯誤訊息。",
+        resultErrorUse: "方便現場快速排查網路、位址或格式問題。",
+        resultTimeDesc: "本筆掃碼的時間記錄。",
+        resultTimeUse: "便於追溯與歷史查詢。",
+        transportEyebrow: "Transport",
+        transportTitle: "5. 數據傳輸模式說明",
+        transportSub: "ScanJet 的傳輸行為可依實際接收端需求設定，不同模式的核心差異在於發送方式、位址與封包格式。",
+        transportCard1Title: "自動傳輸模式",
+        transportCard1Body: "掃碼成功後立即送出資料，適合產線、入庫、出貨、工站報工等連續作業場景。",
+        transportCard2Title: "手動傳輸模式",
+        transportCard2Body: "掃碼後先顯示結果，待使用者確認內容無誤，再執行發送，適合需人工複核的流程。",
+        transportCard3Title: "重新發送模式",
+        transportCard3Body: "可從歷史紀錄中選取某筆資料再次傳輸，適合網路中斷後補送或系統重試。",
+        settingItem: "設定項目",
+        settingDesc: "內容說明",
+        settingExample: "範例",
+        targetAddressDesc: "接收資料的目標位址或端點。",
+        methodDesc: "傳輸方式，例如 HTTP、TCP、Socket 或其他自訂模式。",
+        payloadDesc: "送出的資料內容格式，可為純文字、JSON 或自訂字串。",
+        timeoutDesc: "等待對方回應的時間，超時則視為傳輸失敗。",
+        retryDesc: "當發送失敗時是否允許重新嘗試。",
+        recommendedPractice: "建議做法：",
+        transportCallout: "若你的接收端是 MES、ERP 或內部 Server，請先確認它要接收的是純字串、JSON、指定欄位，還是特定協議格式，再對應設定 ScanJet 的傳輸內容。",
+        historyEyebrow: "History",
+        historyTitle: "6. 歷史紀錄與複製功能",
+        historyCard1Title: "6.1 歷史紀錄內容",
+        historyItem1: "掃描時間",
+        historyItem2: "Raw Data 原始內容",
+        historyItem3: "傳輸狀態",
+        historyItem4: "錯誤訊息（若有）",
+        historyCard2Title: "6.2 長按複製",
+        historyCard2Body: "在掃描結果頁或歷史列表中，對 Raw Data 進行長按，可快速複製內容，以便貼到其他 App、報表系統或訊息工具中。",
+        historyCard3Title: "6.3 重送歷史資料",
+        historyCard3Body: "若前次發送因網路或伺服器問題失敗，可在歷史紀錄中選擇該筆資料重新傳輸，不必再次掃碼。",
+        historyCard4Title: "6.4 歷史用途",
+        historyCard4Body: "歷史紀錄不只是查詢，也可作為現場除錯、流程追蹤、稽核比對與異常回補的依據。",
+        settingsEyebrow: "Settings",
+        settingsTitle: "7. 建議設定項目",
+        recommendedContent: "建議內容",
+        settingsCameraValue: "允許",
+        settingsCameraDesc: "若未授權相機，將無法使用掃描功能。",
+        settingsAutoValue: "依現場需求",
+        settingsAutoDesc: "產線建議開啟；人工複核場景建議關閉。",
+        settingsDedupeValue: "1～3 秒",
+        settingsDedupeDesc: "避免鏡頭持續對準同一個碼時重複觸發。",
+        settingsHistoryValue: "開啟",
+        settingsHistoryDesc: "建議保留紀錄，以利追蹤與補送。",
+        settingsTimeoutValue: "3～5 秒",
+        settingsTimeoutDesc: "可兼顧即時性與連線穩定性。",
+        exampleEyebrow: "Example",
+        exampleTitle: "8. 實際使用範例",
+        exampleCard1Title: "場景 A：產線掃碼即時上傳",
+        exampleCard1Body: '作業員將手機對準產品條碼後，ScanJet 立即辨識並讀出資料，接著自動送往工廠伺服器。成功後畫面顯示 <code>Sent</code>，同時保留一筆歷史紀錄。',
+        exampleCard2Title: "場景 B：人工複核後發送",
+        exampleCard2Body: "使用者先掃描條碼，確認畫面上的 Raw Data 是否正確，再手動按下發送。適合需要核對批號、工單號、序號的作業流程。",
+        troubleEyebrow: "Troubleshooting",
+        troubleTitle: "9. 常見問題排除",
+        problem: "問題",
+        possibleCause: "可能原因",
+        suggestedAction: "建議處理方式",
+        trouble1Problem: "無法掃描",
+        trouble1Cause: "未授權相機、條碼模糊、距離不適當、光線不足",
+        trouble1Action: "確認相機權限，調整角度與距離，改善照明環境",
+        trouble2Problem: "掃到但沒有傳送",
+        trouble2Cause: "自動傳輸未開啟、目標位址錯誤、網路中斷",
+        trouble2Action: "檢查傳輸設定、網路狀態與接收端服務是否正常",
+        trouble3Problem: "重複送出同一筆資料",
+        trouble3Cause: "鏡頭長時間停留在同一碼、去重複時間過短",
+        trouble3Action: "調高 Deduplicate Window，掃描後移開鏡頭",
+        trouble4Problem: "傳輸失敗",
+        trouble4Cause: "API 無回應、Server 拒絕、格式不符、逾時",
+        trouble4Action: "查看 Last Error，確認接收端格式與協議需求",
+        troubleTipLabel: "排錯建議：",
+        troubleTip: "如需快速確認問題來源，可先關閉自動傳輸，單純測試掃碼顯示是否正常；再進一步測試目標位址、封包格式與接收端回應。",
+        bestEyebrow: "Best Practice",
+        bestTitle: "10. 使用建議",
+        bestCard1Title: "保持碼面清楚",
+        bestCard1Body: "避免污損、褶皺、過度反光與遮擋，以提高辨識穩定度。",
+        bestCard2Title: "先確認格式",
+        bestCard2Body: "在正式上線前，先用測試碼檢查 Raw Data 是否符合接收端要求。",
+        bestCard3Title: "保留歷史紀錄",
+        bestCard3Body: "建議保留紀錄以利除錯、追蹤與漏傳補發，特別適合現場應用。",
+        summaryEyebrow: "Summary",
+        summaryTitle: "11. 文件總結",
+        summaryBody: 'ScanJet 的核心價值在於：<b>快速掃碼、清楚顯示、穩定傳輸、可追溯管理</b>。<br />只要依照實際接收端需求正確設定傳輸位址、格式與模式，即可將 ScanJet 作為現場掃碼與數據交換的高效率工具。',
+        tocTitle: "目錄",
+        toc1: "1. 功能概述",
+        toc2: "2. 系統流程",
+        toc3: "3. 掃碼操作",
+        toc4: "4. 結果畫面",
+        toc5: "5. 傳輸模式",
+        toc6: "6. 歷史紀錄",
+        toc7: "7. 建議設定",
+        toc8: "8. 使用範例",
+        toc9: "9. 問題排除",
+        toc10: "10. 使用建議",
+        toc11: "11. 總結",
+        footerDoc: "Document: ScanJet Operation Manual",
+        footerUse: "用途：提供使用者快速理解 ScanJet 的掃碼、顯示、傳輸與歷史記錄操作方式。"
+      },
+      "zh-Hans": {
+        badge: "ScanJet 使用指南",
+        titleMain: "ScanJet 操作说明书",
+        lead: '本文档为 ScanJet App 的完整操作手册，按照实际使用流程编写，核心模式为 <b>扫码 → 显示数据 → 传输数据 → 保存历史记录</b>。适用于需要快速读取条码 / QR Code，并将内容发送到外部系统、服务器、API 或指定设备的使用场景。',
+        docHighlights: "文档重点",
+        highlight1: '<b>支持对象：</b> 1D 条码、2D Code、QR Code 等常见码制',
+        highlight2: '<b>核心流程：</b> 实时扫描、解析 Raw Data、按设置自动或手动传输',
+        highlight3: '<b>传输重点：</b> 可根据目标系统选择对应的传输方式与内容格式',
+        highlight4: '<b>操作辅助：</b> 历史记录、长按复制、重新发送、状态提示',
+        overviewEyebrow: "Overview",
+        overviewTitle: "1. App 功能概述",
+        overviewCard1Title: "实时扫码",
+        overviewCard1Body: "通过手机相机实时识别条码与 QR Code，扫描成功后立即显示解码内容。",
+        overviewCard2Title: "数据传输",
+        overviewCard2Body: "按照系统设置，将扫描结果发送到指定目标，例如 API、Server、Socket 或自定义接收端。",
+        overviewCard3Title: "历史管理",
+        overviewCard3Body: "自动保留扫描记录，方便查询、复制、排错、再次发送与现场追踪。",
+        workflowEyebrow: "Workflow",
+        workflowTitle: "2. 系统运作流程",
+        workflowSub: "ScanJet 的主要逻辑是先成功解码，再按设置进行传输，最后写入历史记录。",
+        step1Title: "开启扫描器",
+        step1Body: "用户进入扫描页面后，相机开始读取视野内的条码与 QR Code。",
+        step2Title: "识别与解码",
+        step2Body: "系统识别码制并将内容转换为可读取的 Raw Data 字符串。",
+        step3Title: "显示结果",
+        step3Body: "将扫码成功的数据显示在画面上，供立即检查、复制或后续传送。",
+        step4Title: "传输数据",
+        step4Body: "按设置的目标地址、格式与传输模式发送数据。",
+        step5Title: "写入历史",
+        step5Body: "保存扫描内容、时间与结果状态，方便后续追溯与重发。",
+        scanEyebrow: "Scanning",
+        scanTitle: "3. 扫码操作方式",
+        scanStartTitle: "3.1 开始扫描",
+        scanStart1: "打开 ScanJet App，进入扫描页面。",
+        scanStart2: "将镜头对准条码或 QR Code，保持图像清晰稳定。",
+        scanStart3: "系统识别成功后，会立即显示扫描结果。",
+        scanStart4: "若已启用自动传输，系统会在扫码成功后自动发送数据。",
+        scanTipsTitle: "3.2 扫描建议",
+        scanTip1: "请保持环境光源充足，避免反光与过度阴影。",
+        scanTip2: "请让条码完整出现在画面中，避免遮挡与过度倾斜。",
+        scanTip3: "若为小尺寸码，请适度靠近；若为大尺寸码，请稍微拉远。",
+        scanTip4: "连续扫描时，建议每笔数据完成后再移向下一个码，避免误重复扫描。",
+        noteLabel: "注意：",
+        scanNote: "若相同内容在短时间内连续出现在镜头前，系统可根据去重设置（Deduplicate Window）避免重复触发传输。",
+        resultEyebrow: "Result",
+        resultTitle: "4. 扫描结果画面说明",
+        resultSub: "扫码成功后，系统通常会显示原始字符串、状态信息与传输状态。",
+        tableColField: "字段",
+        tableColDesc: "说明",
+        tableColUse: "用途",
+        resultRawDesc: "扫描后解析出的原始内容字符串。",
+        resultRawUse: "供用户确认、复制、传输或粘贴到其他系统。",
+        resultStatusDesc: "当前系统状态，例如 Ready、Sending、Sent、Failed 等。",
+        resultStatusUse: "快速判断当前是否发送成功或发生错误。",
+        resultErrorDesc: "若传输失败，会显示对应错误信息。",
+        resultErrorUse: "方便现场快速排查网络、地址或格式问题。",
+        resultTimeDesc: "本次扫码的时间记录。",
+        resultTimeUse: "便于追溯与历史查询。",
+        transportEyebrow: "Transport",
+        transportTitle: "5. 数据传输模式说明",
+        transportSub: "ScanJet 的传输行为可根据实际接收端需求设置，不同模式的核心差异在于发送方式、地址与封包格式。",
+        transportCard1Title: "自动传输模式",
+        transportCard1Body: "扫码成功后立即发送数据，适合产线、入库、出货、工站报工等连续作业场景。",
+        transportCard2Title: "手动传输模式",
+        transportCard2Body: "扫码后先显示结果，待用户确认内容无误后再执行发送，适合需要人工复核的流程。",
+        transportCard3Title: "重新发送模式",
+        transportCard3Body: "可从历史记录中选择某笔数据再次传输，适合网络中断后补发或系统重试。",
+        settingItem: "设置项",
+        settingDesc: "内容说明",
+        settingExample: "示例",
+        targetAddressDesc: "接收数据的目标地址或端点。",
+        methodDesc: "传输方式，例如 HTTP、TCP、Socket 或其他自定义模式。",
+        payloadDesc: "发送的数据内容格式，可为纯文本、JSON 或自定义字符串。",
+        timeoutDesc: "等待对方响应的时间，超时则视为传输失败。",
+        retryDesc: "发送失败时是否允许重新尝试。",
+        recommendedPractice: "建议做法：",
+        transportCallout: "如果你的接收端是 MES、ERP 或内部 Server，请先确认它接收的是纯字符串、JSON、指定字段，还是特定协议格式，再对应设置 ScanJet 的传输内容。",
+        historyEyebrow: "History",
+        historyTitle: "6. 历史记录与复制功能",
+        historyCard1Title: "6.1 历史记录内容",
+        historyItem1: "扫描时间",
+        historyItem2: "Raw Data 原始内容",
+        historyItem3: "传输状态",
+        historyItem4: "错误信息（如有）",
+        historyCard2Title: "6.2 长按复制",
+        historyCard2Body: "在扫描结果页或历史列表中，对 Raw Data 进行长按，可快速复制内容，以便粘贴到其他 App、报表系统或消息工具中。",
+        historyCard3Title: "6.3 重发历史数据",
+        historyCard3Body: "若前次发送因网络或服务器问题失败，可在历史记录中选择该笔数据重新传输，无需再次扫码。",
+        historyCard4Title: "6.4 历史用途",
+        historyCard4Body: "历史记录不只是查询，也可作为现场排错、流程追踪、稽核比对与异常补发的依据。",
+        settingsEyebrow: "Settings",
+        settingsTitle: "7. 建议设置项",
+        recommendedContent: "建议内容",
+        settingsCameraValue: "允许",
+        settingsCameraDesc: "若未授权相机，将无法使用扫描功能。",
+        settingsAutoValue: "视现场需求而定",
+        settingsAutoDesc: "产线建议开启；人工复核场景建议关闭。",
+        settingsDedupeValue: "1～3 秒",
+        settingsDedupeDesc: "避免镜头持续对准同一个码时重复触发。",
+        settingsHistoryValue: "开启",
+        settingsHistoryDesc: "建议保留记录，以利追踪与补发。",
+        settingsTimeoutValue: "3～5 秒",
+        settingsTimeoutDesc: "可兼顾实时性与连接稳定性。",
+        exampleEyebrow: "Example",
+        exampleTitle: "8. 实际使用示例",
+        exampleCard1Title: "场景 A：产线扫码即时上传",
+        exampleCard1Body: '作业员将手机对准产品条码后，ScanJet 立即识别并读出数据，接着自动发送到工厂服务器。成功后画面显示 <code>Sent</code>，同时保留一笔历史记录。',
+        exampleCard2Title: "场景 B：人工复核后发送",
+        exampleCard2Body: "用户先扫描条码，确认画面上的 Raw Data 是否正确，再手动点击发送。适合需要核对批号、工单号、序号的作业流程。",
+        troubleEyebrow: "Troubleshooting",
+        troubleTitle: "9. 常见问题排除",
+        problem: "问题",
+        possibleCause: "可能原因",
+        suggestedAction: "建议处理方式",
+        trouble1Problem: "无法扫描",
+        trouble1Cause: "未授权相机、条码模糊、距离不合适、光线不足",
+        trouble1Action: "确认相机权限，调整角度与距离，改善照明环境",
+        trouble2Problem: "扫到但没有发送",
+        trouble2Cause: "自动传输未开启、目标地址错误、网络中断",
+        trouble2Action: "检查传输设置、网络状态与接收端服务是否正常",
+        trouble3Problem: "重复发送同一笔数据",
+        trouble3Cause: "镜头长时间停留在同一码上、去重时间过短",
+        trouble3Action: "调高 Deduplicate Window，扫描后移开镜头",
+        trouble4Problem: "传输失败",
+        trouble4Cause: "API 无响应、Server 拒绝、格式不符、超时",
+        trouble4Action: "查看 Last Error，确认接收端格式与协议需求",
+        troubleTipLabel: "排错建议：",
+        troubleTip: "如需快速确认问题来源，可先关闭自动传输，单纯测试扫码显示是否正常；再进一步测试目标地址、封包格式与接收端响应。",
+        bestEyebrow: "Best Practice",
+        bestTitle: "10. 使用建议",
+        bestCard1Title: "保持码面清晰",
+        bestCard1Body: "避免污损、褶皱、过度反光与遮挡，以提高识别稳定度。",
+        bestCard2Title: "先确认格式",
+        bestCard2Body: "在正式上线前，先用测试码检查 Raw Data 是否符合接收端要求。",
+        bestCard3Title: "保留历史记录",
+        bestCard3Body: "建议保留记录以利排错、追踪与漏传补发，特别适合现场应用。",
+        summaryEyebrow: "Summary",
+        summaryTitle: "11. 文档总结",
+        summaryBody: 'ScanJet 的核心价值在于：<b>快速扫码、清晰显示、稳定传输、可追溯管理</b>。<br />只要按照实际接收端需求正确设置传输地址、格式与模式，即可将 ScanJet 作为现场扫码与数据交换的高效工具。',
+        tocTitle: "目录",
+        toc1: "1. 功能概述",
+        toc2: "2. 系统流程",
+        toc3: "3. 扫码操作",
+        toc4: "4. 结果画面",
+        toc5: "5. 传输模式",
+        toc6: "6. 历史记录",
+        toc7: "7. 建议设置",
+        toc8: "8. 使用示例",
+        toc9: "9. 问题排除",
+        toc10: "10. 使用建议",
+        toc11: "11. 总结",
+        footerDoc: "Document: ScanJet Operation Manual",
+        footerUse: "用途：帮助用户快速理解 ScanJet 的扫码、显示、传输与历史记录操作方式。"
+      },
+      ja: {
+        badge: "ScanJet ユーザーガイド",
+        titleMain: "ScanJet 操作マニュアル",
+        lead: '本書は ScanJet アプリの完全な操作マニュアルです。実際の利用フローに基づいて作成されており、基本パターンは <b>スキャン → データ表示 → データ送信 → 履歴保存</b> です。バーコード / QR Code をすばやく読み取り、その内容を外部システム、サーバー、API、または指定デバイスへ送信する用途に適しています。',
+        docHighlights: "ドキュメントのポイント",
+        highlight1: '<b>対応コード：</b> 1D バーコード、2D コード、QR Code などの一般的なコード体系',
+        highlight2: '<b>基本フロー：</b> リアルタイムスキャン、Raw Data 解析、設定に応じた自動送信または手動送信',
+        highlight3: '<b>送信の要点：</b> 対象システムに応じて適切な送信方式とデータ形式を選択可能',
+        highlight4: '<b>操作補助：</b> 履歴記録、長押しコピー、再送、ステータス表示',
+        overviewEyebrow: "Overview",
+        overviewTitle: "1. アプリ概要",
+        overviewCard1Title: "リアルタイムスキャン",
+        overviewCard1Body: "スマートフォンのカメラでバーコードや QR Code をリアルタイムに認識し、スキャン成功後すぐにデコード結果を表示します。",
+        overviewCard2Title: "データ送信",
+        overviewCard2Body: "システム設定に応じて、スキャン結果を API、サーバー、Socket、またはカスタム受信先へ送信します。",
+        overviewCard3Title: "履歴管理",
+        overviewCard3Body: "スキャン履歴を自動保存し、検索、コピー、トラブルシュート、再送、現場での追跡に利用できます。",
+        workflowEyebrow: "Workflow",
+        workflowTitle: "2. システム動作フロー",
+        workflowSub: "ScanJet の主なロジックは、まず正常にデコードし、その後設定に従って送信し、最後に履歴へ記録することです。",
+        step1Title: "スキャナーを開く",
+        step1Body: "ユーザーがスキャン画面に入ると、カメラが視野内のバーコードや QR Code の読み取りを開始します。",
+        step2Title: "認識とデコード",
+        step2Body: "システムがコード種別を識別し、内容を読み取り可能な Raw Data 文字列に変換します。",
+        step3Title: "結果を表示",
+        step3Body: "スキャンに成功したデータを画面に表示し、すぐに確認、コピー、または後続の送信に利用できます。",
+        step4Title: "データ送信",
+        step4Body: "設定された送信先アドレス、形式、送信モードに従ってデータを送信します。",
+        step5Title: "履歴へ保存",
+        step5Body: "スキャン内容、時刻、結果ステータスを保存し、後で追跡や再送に利用できるようにします。",
+        scanEyebrow: "Scanning",
+        scanTitle: "3. スキャン操作方法",
+        scanStartTitle: "3.1 スキャン開始",
+        scanStart1: "ScanJet アプリを開き、スキャン画面に入ります。",
+        scanStart2: "カメラをバーコードまたは QR Code に向け、画像が鮮明で安定している状態を保ちます。",
+        scanStart3: "システムが正常に認識すると、スキャン結果がすぐに表示されます。",
+        scanStart4: "自動送信が有効な場合、スキャン成功後にデータが自動送信されます。",
+        scanTipsTitle: "3.2 スキャンのコツ",
+        scanTip1: "十分な照明を確保し、反射や強い影を避けてください。",
+        scanTip2: "バーコード全体が画面内に収まり、隠れたり大きく傾いたりしないようにしてください。",
+        scanTip3: "小さいコードは近づけ、大きいコードは少し離れてください。",
+        scanTip4: "連続スキャン時は、1 件の処理が終わってから次のコードへ移動し、重複スキャンを防いでください。",
+        noteLabel: "注意：",
+        scanNote: "同じ内容が短時間に連続してカメラ前に現れた場合、Deduplicate Window の設定により重複送信のトリガーを防ぐことができます。",
+        resultEyebrow: "Result",
+        resultTitle: "4. スキャン結果画面の説明",
+        resultSub: "スキャン成功後、通常は元の文字列、ステータスメッセージ、送信状態が表示されます。",
+        tableColField: "項目",
+        tableColDesc: "説明",
+        tableColUse: "用途",
+        resultRawDesc: "スキャン後に解析された元の内容文字列です。",
+        resultRawUse: "確認、コピー、送信、または他システムへの貼り付けに使用します。",
+        resultStatusDesc: "Ready、Sending、Sent、Failed などの現在のシステム状態です。",
+        resultStatusUse: "送信成功かエラー発生かをすばやく判断できます。",
+        resultErrorDesc: "送信失敗時には対応するエラーメッセージが表示されます。",
+        resultErrorUse: "現場でネットワーク、アドレス、形式の問題をすばやく切り分けるのに役立ちます。",
+        resultTimeDesc: "このスキャンの時刻記録です。",
+        resultTimeUse: "追跡や履歴検索に便利です。",
+        transportEyebrow: "Transport",
+        transportTitle: "5. データ送信モードの説明",
+        transportSub: "ScanJet の送信動作は、実際の受信側要件に応じて設定できます。モードごとの主な違いは、送信方法、アドレス、パケット形式です。",
+        transportCard1Title: "自動送信モード",
+        transportCard1Body: "スキャン成功後すぐにデータを送信します。生産ライン、入庫、出荷、作業報告などの連続作業に適しています。",
+        transportCard2Title: "手動送信モード",
+        transportCard2Body: "スキャン後に結果を先に表示し、内容が正しいことを確認してから送信します。人手による確認が必要な工程に適しています。",
+        transportCard3Title: "再送モード",
+        transportCard3Body: "履歴から任意の記録を選び、再度送信できます。ネットワーク中断後の補送やシステム再試行に適しています。",
+        settingItem: "設定項目",
+        settingDesc: "説明",
+        settingExample: "例",
+        targetAddressDesc: "データを受信する送信先アドレスまたはエンドポイントです。",
+        methodDesc: "HTTP、TCP、Socket、またはその他のカスタムモードなどの送信方式です。",
+        payloadDesc: "送信データの形式で、プレーンテキスト、JSON、またはカスタム文字列を使用できます。",
+        timeoutDesc: "相手側の応答を待つ時間です。タイムアウトした場合は送信失敗と見なされます。",
+        retryDesc: "送信失敗時に再試行を許可するかどうかです。",
+        recommendedPractice: "推奨事項：",
+        transportCallout: "受信側が MES、ERP、または社内サーバーである場合、プレーン文字列、JSON、特定フィールド、または特定プロトコル形式のどれを受け取るかを事前に確認し、それに合わせて ScanJet の送信内容を設定してください。",
+        historyEyebrow: "History",
+        historyTitle: "6. 履歴記録とコピー機能",
+        historyCard1Title: "6.1 履歴内容",
+        historyItem1: "スキャン時刻",
+        historyItem2: "Raw Data の内容",
+        historyItem3: "送信ステータス",
+        historyItem4: "エラーメッセージ（ある場合）",
+        historyCard2Title: "6.2 長押しコピー",
+        historyCard2Body: "スキャン結果画面または履歴一覧で Raw Data を長押しすると、内容をすばやくコピーでき、他のアプリ、帳票システム、メッセージツールへ貼り付けられます。",
+        historyCard3Title: "6.3 履歴データの再送",
+        historyCard3Body: "前回の送信がネットワークやサーバーの問題で失敗した場合、履歴からその記録を選んで再送でき、再スキャンは不要です。",
+        historyCard4Title: "6.4 履歴の用途",
+        historyCard4Body: "履歴は単なる検索用ではありません。現場でのトラブルシュート、工程追跡、監査比較、例外対応にも活用できます。",
+        settingsEyebrow: "Settings",
+        settingsTitle: "7. 推奨設定項目",
+        recommendedContent: "推奨値",
+        settingsCameraValue: "許可",
+        settingsCameraDesc: "カメラ権限が付与されていない場合、スキャン機能は使用できません。",
+        settingsAutoValue: "現場要件による",
+        settingsAutoDesc: "生産ラインでは ON 推奨、手動確認工程では OFF 推奨です。",
+        settingsDedupeValue: "1～3 秒",
+        settingsDedupeDesc: "同じコードにカメラを向け続けた際の重複トリガーを防ぎます。",
+        settingsHistoryValue: "有効",
+        settingsHistoryDesc: "追跡や再送のため、記録を保持することを推奨します。",
+        settingsTimeoutValue: "3～5 秒",
+        settingsTimeoutDesc: "リアルタイム性と接続安定性のバランスを取れます。",
+        exampleEyebrow: "Example",
+        exampleTitle: "8. 使用例",
+        exampleCard1Title: "シナリオ A：生産ラインでの即時アップロード",
+        exampleCard1Body: '作業者が製品バーコードにスマートフォンを向けると、ScanJet がすぐにデータを認識・読み取りし、その後工場サーバーへ自動送信します。成功すると画面に <code>Sent</code> が表示され、同時に履歴も保存されます。',
+        exampleCard2Title: "シナリオ B：確認後に手動送信",
+        exampleCard2Body: "ユーザーは先にバーコードをスキャンし、画面上の Raw Data が正しいことを確認してから手動で送信します。ロット番号、作業指示番号、シリアル番号などの確認が必要な工程に適しています。",
+        troubleEyebrow: "Troubleshooting",
+        troubleTitle: "9. よくある問題と対処",
+        problem: "問題",
+        possibleCause: "考えられる原因",
+        suggestedAction: "推奨対応",
+        trouble1Problem: "スキャンできない",
+        trouble1Cause: "カメラ権限未許可、バーコードが不鮮明、距離不適切、照明不足",
+        trouble1Action: "カメラ権限を確認し、角度と距離を調整し、照明環境を改善してください",
+        trouble2Problem: "スキャンはできるが送信されない",
+        trouble2Cause: "自動送信が無効、送信先アドレス誤り、ネットワーク中断",
+        trouble2Action: "送信設定、ネットワーク状態、受信サービスの稼働状況を確認してください",
+        trouble3Problem: "同じデータが繰り返し送信される",
+        trouble3Cause: "同じコードに長時間カメラを向けている、重複防止時間が短すぎる",
+        trouble3Action: "Deduplicate Window を長めに設定し、スキャン後はカメラを移動してください",
+        trouble4Problem: "送信失敗",
+        trouble4Cause: "API 応答なし、サーバー拒否、形式不一致、タイムアウト",
+        trouble4Action: "Last Error を確認し、受信側が要求する形式とプロトコルを確認してください",
+        troubleTipLabel: "トラブルシュートのヒント：",
+        troubleTip: "問題箇所をすばやく特定するには、まず自動送信を無効にしてスキャンと表示が正常か確認してください。その後、送信先アドレス、パケット形式、受信側の応答を個別に確認します。",
+        bestEyebrow: "Best Practice",
+        bestTitle: "10. 利用上の推奨事項",
+        bestCard1Title: "コード面をきれいに保つ",
+        bestCard1Body: "汚れ、しわ、強い反射、遮蔽を避けることで認識の安定性が向上します。",
+        bestCard2Title: "まず形式を確認する",
+        bestCard2Body: "本番運用前にテストコードを使って、Raw Data が受信側要件を満たすか確認してください。",
+        bestCard3Title: "履歴を保持する",
+        bestCard3Body: "トラブルシュート、追跡、未送信データの再送のために履歴保持を推奨します。特に現場運用に有効です。",
+        summaryEyebrow: "Summary",
+        summaryTitle: "11. まとめ",
+        summaryBody: 'ScanJet の中核価値は、<b>高速スキャン、明確な表示、安定した送信、追跡可能な管理</b> にあります。<br />実際の受信側要件に応じて送信先アドレス、形式、モードを正しく設定すれば、ScanJet は現場での高効率なコードスキャンおよびデータ交換ツールとして活用できます。',
+        tocTitle: "目次",
+        toc1: "1. アプリ概要",
+        toc2: "2. システムフロー",
+        toc3: "3. スキャン操作",
+        toc4: "4. 結果画面",
+        toc5: "5. 送信モード",
+        toc6: "6. 履歴記録",
+        toc7: "7. 推奨設定",
+        toc8: "8. 使用例",
+        toc9: "9. 問題対処",
+        toc10: "10. 利用推奨",
+        toc11: "11. まとめ",
+        footerDoc: "Document: ScanJet Operation Manual",
+        footerUse: "目的：ScanJet のスキャン、表示、データ送信、履歴記録の操作方法をすばやく理解できるようにすること。"
+      },
+      ko: {
+        badge: "ScanJet 사용자 가이드",
+        titleMain: "ScanJet 운영 매뉴얼",
+        lead: '이 문서는 ScanJet 앱의 전체 운영 매뉴얼입니다. 실제 사용 흐름을 기준으로 작성되었으며, 핵심 패턴은 <b>스캔 → 데이터 표시 → 데이터 전송 → 이력 저장</b> 입니다. 바코드 / QR Code 를 빠르게 읽고 그 내용을 외부 시스템, 서버, API 또는 지정된 장치로 전송해야 하는 환경에 적합합니다.',
+        docHighlights: "문서 핵심 포인트",
+        highlight1: '<b>지원 대상:</b> 1D 바코드, 2D 코드, QR Code 등 일반적인 코드 형식',
+        highlight2: '<b>핵심 흐름:</b> 실시간 스캔, Raw Data 해석, 설정에 따른 자동 또는 수동 전송',
+        highlight3: '<b>전송 포인트:</b> 대상 시스템에 맞는 전송 방식과 데이터 형식을 선택 가능',
+        highlight4: '<b>운영 보조:</b> 이력 기록, 길게 눌러 복사, 재전송, 상태 안내',
+        overviewEyebrow: "Overview",
+        overviewTitle: "1. 앱 개요",
+        overviewCard1Title: "실시간 스캔",
+        overviewCard1Body: "모바일 카메라를 통해 바코드와 QR Code 를 실시간으로 인식하고, 스캔 성공 시 즉시 해독된 내용을 표시합니다.",
+        overviewCard2Title: "데이터 전송",
+        overviewCard2Body: "시스템 설정에 따라 스캔 결과를 API, 서버, Socket 또는 사용자 정의 수신 대상으로 전송합니다.",
+        overviewCard3Title: "이력 관리",
+        overviewCard3Body: "스캔 기록을 자동으로 보관하여 조회, 복사, 문제 해결, 재전송 및 현장 추적에 활용할 수 있습니다.",
+        workflowEyebrow: "Workflow",
+        workflowTitle: "2. 시스템 동작 흐름",
+        workflowSub: "ScanJet 의 주요 로직은 먼저 성공적으로 디코딩한 뒤 설정에 따라 전송하고, 마지막으로 이력에 기록하는 것입니다.",
+        step1Title: "스캐너 열기",
+        step1Body: "사용자가 스캔 페이지에 들어가면 카메라가 시야 내의 바코드와 QR Code 를 읽기 시작합니다.",
+        step2Title: "인식 및 디코딩",
+        step2Body: "시스템이 코드 유형을 식별하고 내용을 읽을 수 있는 Raw Data 문자열로 변환합니다.",
+        step3Title: "결과 표시",
+        step3Body: "스캔에 성공한 데이터를 화면에 표시하여 즉시 확인, 복사 또는 이후 전송에 사용할 수 있습니다.",
+        step4Title: "데이터 전송",
+        step4Body: "설정된 대상 주소, 형식 및 전송 모드에 따라 데이터를 전송합니다.",
+        step5Title: "이력 기록",
+        step5Body: "스캔 내용, 시간 및 결과 상태를 저장하여 나중에 추적 및 재전송에 사용할 수 있도록 합니다.",
+        scanEyebrow: "Scanning",
+        scanTitle: "3. 스캔 방법",
+        scanStartTitle: "3.1 스캔 시작",
+        scanStart1: "ScanJet 앱을 열고 스캔 페이지로 이동합니다.",
+        scanStart2: "카메라를 바코드 또는 QR Code 에 맞추고, 이미지가 선명하고 안정적으로 유지되도록 합니다.",
+        scanStart3: "시스템이 성공적으로 인식하면 스캔 결과가 즉시 표시됩니다.",
+        scanStart4: "자동 전송이 활성화된 경우, 스캔 성공 후 시스템이 데이터를 자동으로 전송합니다.",
+        scanTipsTitle: "3.2 스캔 팁",
+        scanTip1: "조명이 충분한 환경을 유지하고 반사나 과도한 그림자를 피하십시오.",
+        scanTip2: "바코드가 화면 안에 완전히 보이도록 하고, 가려지거나 과하게 기울어지지 않게 하십시오.",
+        scanTip3: "작은 코드는 더 가까이, 큰 코드는 약간 멀리서 스캔하십시오.",
+        scanTip4: "연속 스캔 시에는 한 건이 완료된 후 다음 코드로 이동하여 중복 스캔을 방지하십시오.",
+        noteLabel: "참고:",
+        scanNote: "같은 내용이 짧은 시간 안에 카메라 앞에 반복해서 나타날 경우, 시스템은 Deduplicate Window 설정에 따라 중복 전송 트리거를 방지할 수 있습니다.",
+        resultEyebrow: "Result",
+        resultTitle: "4. 스캔 결과 화면 설명",
+        resultSub: "스캔이 성공하면 시스템은 일반적으로 원본 문자열, 상태 메시지 및 전송 상태를 표시합니다.",
+        tableColField: "항목",
+        tableColDesc: "설명",
+        tableColUse: "용도",
+        resultRawDesc: "스캔 후 해석된 원본 내용 문자열입니다.",
+        resultRawUse: "사용자가 확인, 복사, 전송하거나 다른 시스템에 붙여넣는 데 사용합니다.",
+        resultStatusDesc: "Ready, Sending, Sent, Failed 등 현재 시스템 상태입니다.",
+        resultStatusUse: "전송 성공 여부나 오류 발생 여부를 빠르게 판단할 수 있습니다.",
+        resultErrorDesc: "전송 실패 시 해당 오류 메시지가 표시됩니다.",
+        resultErrorUse: "현장에서 네트워크, 주소 또는 형식 문제를 빠르게 점검하는 데 도움이 됩니다.",
+        resultTimeDesc: "이번 스캔의 시간 기록입니다.",
+        resultTimeUse: "추적 및 이력 조회에 유용합니다.",
+        transportEyebrow: "Transport",
+        transportTitle: "5. 데이터 전송 모드 설명",
+        transportSub: "ScanJet 의 전송 동작은 실제 수신 측 요구 사항에 따라 설정할 수 있습니다. 모드 간 핵심 차이는 전송 방식, 주소 및 패킷 형식입니다.",
+        transportCard1Title: "자동 전송 모드",
+        transportCard1Body: "스캔 성공 직후 즉시 데이터를 전송합니다. 생산라인, 입고, 출고, 작업 보고 등 연속 작업 환경에 적합합니다.",
+        transportCard2Title: "수동 전송 모드",
+        transportCard2Body: "스캔 후 먼저 결과를 표시하고, 내용이 정확한지 확인한 뒤 사용자가 직접 전송합니다. 수동 검토가 필요한 프로세스에 적합합니다.",
+        transportCard3Title: "재전송 모드",
+        transportCard3Body: "이력에서 특정 기록을 선택하여 다시 전송할 수 있습니다. 네트워크 중단 후 재전송이나 시스템 재시도에 적합합니다.",
+        settingItem: "설정 항목",
+        settingDesc: "설명",
+        settingExample: "예시",
+        targetAddressDesc: "데이터를 수신하는 대상 주소 또는 엔드포인트입니다.",
+        methodDesc: "HTTP, TCP, Socket 또는 기타 사용자 정의 모드와 같은 전송 방식입니다.",
+        payloadDesc: "전송되는 데이터 형식으로, 일반 텍스트, JSON 또는 사용자 정의 문자열이 될 수 있습니다.",
+        timeoutDesc: "상대방의 응답을 기다리는 시간입니다. 시간이 초과되면 전송 실패로 간주됩니다.",
+        retryDesc: "전송 실패 시 재시도를 허용할지 여부입니다.",
+        recommendedPractice: "권장 사항:",
+        transportCallout: "수신 측이 MES, ERP 또는 내부 서버인 경우, 일반 문자열, JSON, 지정 필드 또는 특정 프로토콜 형식 중 무엇을 받아야 하는지 먼저 확인한 뒤 ScanJet 의 전송 내용을 그에 맞게 설정하십시오.",
+        historyEyebrow: "History",
+        historyTitle: "6. 이력 및 복사 기능",
+        historyCard1Title: "6.1 이력 내용",
+        historyItem1: "스캔 시간",
+        historyItem2: "Raw Data 내용",
+        historyItem3: "전송 상태",
+        historyItem4: "오류 메시지(있는 경우)",
+        historyCard2Title: "6.2 길게 눌러 복사",
+        historyCard2Body: "스캔 결과 페이지 또는 이력 목록에서 Raw Data 를 길게 누르면 내용을 빠르게 복사하여 다른 앱, 보고 시스템 또는 메시지 도구에 붙여넣을 수 있습니다.",
+        historyCard3Title: "6.3 이력 데이터 재전송",
+        historyCard3Body: "이전 전송이 네트워크나 서버 문제로 실패한 경우, 이력에서 해당 기록을 선택하여 다시 전송할 수 있으며 재스캔은 필요하지 않습니다.",
+        historyCard4Title: "6.4 이력 활용",
+        historyCard4Body: "이력은 단순 조회용이 아닙니다. 현장 문제 해결, 공정 추적, 감사 비교 및 예외 복구에도 활용할 수 있습니다.",
+        settingsEyebrow: "Settings",
+        settingsTitle: "7. 권장 설정 항목",
+        recommendedContent: "권장 값",
+        settingsCameraValue: "허용",
+        settingsCameraDesc: "카메라 권한이 허용되지 않으면 스캔 기능을 사용할 수 없습니다.",
+        settingsAutoValue: "현장 요구 사항에 따름",
+        settingsAutoDesc: "생산라인에서는 ON 권장, 수동 검토 환경에서는 OFF 권장입니다.",
+        settingsDedupeValue: "1~3초",
+        settingsDedupeDesc: "같은 코드에 카메라가 계속 머물 때 중복 트리거를 방지합니다.",
+        settingsHistoryValue: "활성화",
+        settingsHistoryDesc: "추적 및 재전송을 위해 기록을 유지하는 것이 좋습니다.",
+        settingsTimeoutValue: "3~5초",
+        settingsTimeoutDesc: "실시간성과 연결 안정성의 균형을 맞출 수 있습니다.",
+        exampleEyebrow: "Example",
+        exampleTitle: "8. 사용 예시",
+        exampleCard1Title: "시나리오 A: 생산라인 즉시 업로드",
+        exampleCard1Body: '작업자가 제품 바코드에 휴대전화를 비추면 ScanJet 이 즉시 데이터를 인식하고 읽은 뒤 공장 서버로 자동 전송합니다. 성공하면 화면에 <code>Sent</code> 가 표시되고 동시에 이력도 저장됩니다.',
+        exampleCard2Title: "시나리오 B: 확인 후 수동 전송",
+        exampleCard2Body: "사용자는 먼저 바코드를 스캔하고 화면의 Raw Data 가 정확한지 확인한 후 수동으로 전송 버튼을 누릅니다. 배치 번호, 작업 지시 번호, 시리얼 번호를 확인해야 하는 작업 흐름에 적합합니다.",
+        troubleEyebrow: "Troubleshooting",
+        troubleTitle: "9. 자주 발생하는 문제 해결",
+        problem: "문제",
+        possibleCause: "가능한 원인",
+        suggestedAction: "권장 조치",
+        trouble1Problem: "스캔할 수 없음",
+        trouble1Cause: "카메라 권한 미허용, 흐릿한 바코드, 부적절한 거리, 조명 부족",
+        trouble1Action: "카메라 권한을 확인하고 각도와 거리를 조정하며 조명 환경을 개선하십시오",
+        trouble2Problem: "스캔되었지만 전송되지 않음",
+        trouble2Cause: "자동 전송 비활성화, 잘못된 대상 주소, 네트워크 중단",
+        trouble2Action: "전송 설정, 네트워크 상태 및 수신 서비스가 정상 동작 중인지 확인하십시오",
+        trouble3Problem: "같은 데이터가 반복 전송됨",
+        trouble3Cause: "같은 코드에 카메라가 너무 오래 머묾, 중복 방지 시간이 너무 짧음",
+        trouble3Action: "Deduplicate Window 값을 늘리고 스캔 후 카메라를 이동하십시오",
+        trouble4Problem: "전송 실패",
+        trouble4Cause: "API 무응답, 서버 거부, 형식 불일치, 시간 초과",
+        trouble4Action: "Last Error 를 확인하고 수신 측이 요구하는 형식과 프로토콜을 점검하십시오",
+        troubleTipLabel: "문제 해결 팁:",
+        troubleTip: "문제 원인을 빠르게 파악하려면 먼저 자동 전송을 끄고 스캔과 표시가 정상인지 확인하십시오. 그 다음 대상 주소, 패킷 형식, 수신 응답을 각각 점검하십시오.",
+        bestEyebrow: "Best Practice",
+        bestTitle: "10. 사용 권장 사항",
+        bestCard1Title: "코드를 선명하게 유지",
+        bestCard1Body: "오염, 주름, 과도한 반사 및 가림을 피하면 인식 안정성이 높아집니다.",
+        bestCard2Title: "먼저 형식 확인",
+        bestCard2Body: "실제 운영 전에 테스트 코드를 사용해 Raw Data 가 수신 측 요구 사항을 충족하는지 확인하십시오.",
+        bestCard3Title: "이력 기록 유지",
+        bestCard3Body: "문제 해결, 추적 및 누락 데이터 재전송을 위해 이력 보관을 권장하며, 특히 현장 운영에 유용합니다.",
+        summaryEyebrow: "Summary",
+        summaryTitle: "11. 요약",
+        summaryBody: 'ScanJet 의 핵심 가치는 <b>빠른 스캔, 명확한 표시, 안정적인 전송, 추적 가능한 관리</b>에 있습니다.<br />실제 수신 측 요구 사항에 맞게 전송 주소, 형식 및 모드를 올바르게 설정하면 ScanJet 은 현장의 고효율 코드 스캔 및 데이터 교환 도구로 활용될 수 있습니다.',
+        tocTitle: "목차",
+        toc1: "1. 앱 개요",
+        toc2: "2. 시스템 흐름",
+        toc3: "3. 스캔 방법",
+        toc4: "4. 결과 화면",
+        toc5: "5. 전송 모드",
+        toc6: "6. 이력 기록",
+        toc7: "7. 권장 설정",
+        toc8: "8. 사용 예시",
+        toc9: "9. 문제 해결",
+        toc10: "10. 사용 권장",
+        toc11: "11. 요약",
+        footerDoc: "Document: ScanJet Operation Manual",
+        footerUse: "목적: 사용자가 ScanJet 의 스캔, 표시, 데이터 전송 및 이력 기록 동작 방식을 빠르게 이해하도록 돕습니다."
+      }
+    };
+
+    function applyLanguage(lang) {
+      const dict = translations[lang] || translations.en;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      document.title = dict.titleMain || 'ScanJet Operation Manual';
+      const desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.setAttribute('content', (dict.titleMain || 'ScanJet Operation Manual') + ' - ScanJet');
+      document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      try { localStorage.setItem('scanjet_lang', lang); } catch (e) {}
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    let initialLang = 'en';
+    try {
+      initialLang = localStorage.getItem('scanjet_lang') || 'en';
+    } catch (e) {}
+    applyLanguage(initialLang);
+  </script>
+</body>
+</html>
